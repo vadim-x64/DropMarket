@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Авторизація</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <div class="card" id="loginCard">
+        <h1>Авторизація</h1>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Логін</label>
+            <input type="text" class="form-control" name="username" id="username">
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" name="password" id="password">
+            <button class="btn btn-outline-primary" type="submit">Увійти</button>
+        </form>
+        <a href="/regis">Реєстрація</a>
+    </div>
+</div>
+</body>
+</html>
