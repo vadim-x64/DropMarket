@@ -1,4 +1,3 @@
-// Customer.java
 package ua.project.dropmarket.entity;
 
 import jakarta.persistence.*;
@@ -36,6 +35,9 @@ public class Customer {
     @NotEmpty
     private String address;
 
-    @OneToOne(mappedBy = "customer")
-    private Users user; // Змінив 'user' на 'customer'
+    @OneToOne
+    @MapKey
+    @MapsId
+    @JoinColumn(name = "id")
+    private Users user;
 }

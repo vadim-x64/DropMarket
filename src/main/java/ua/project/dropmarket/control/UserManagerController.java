@@ -3,8 +3,6 @@ package ua.project.dropmarket.control;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -76,13 +74,7 @@ public class UserManagerController {
     }
 
     @GetMapping("/profile")
-    public String getProfilePage(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        Users user = userService.getUserByUsername(username);
-        Customer customer = customerService.getCustomerByUser(user);
-        model.addAttribute("user", user);
-        model.addAttribute("customer", customer);
+    public String getProfilePage() {
         return "profile";
     }
 }

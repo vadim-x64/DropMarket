@@ -28,10 +28,6 @@ public class UserManagerService implements UserDetailsService {
         this.customerRepository = customerRepository;
     }
 
-    public Users getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
     public boolean getLogicByUser(String username)
     {
         return !userRepository.findAllByUsername(username).isEmpty();

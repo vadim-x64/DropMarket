@@ -1,13 +1,10 @@
-// Users.java
 package ua.project.dropmarket.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,10 +30,6 @@ public class Users implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
-
-    @OneToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer; // Додав це поле
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities()
