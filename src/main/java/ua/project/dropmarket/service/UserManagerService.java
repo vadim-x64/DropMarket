@@ -15,7 +15,9 @@ import java.util.Collections;
 
 @Service
 public class UserManagerService implements UserDetailsService {
+
     private final UserRepository userRepository;
+
     @Getter
     private final CustomerRepository customerRepository;
 
@@ -24,6 +26,10 @@ public class UserManagerService implements UserDetailsService {
     {
         this.userRepository = userRepository;
         this.customerRepository = customerRepository;
+    }
+
+    public Users getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     public boolean getLogicByUser(String username)
