@@ -11,11 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import ua.project.dropmarket.entity.Category;
 import ua.project.dropmarket.entity.Customer;
 import ua.project.dropmarket.entity.Product;
 import ua.project.dropmarket.entity.Users;
 import ua.project.dropmarket.repos.UserRepository;
+import ua.project.dropmarket.service.CategoryService;
 import ua.project.dropmarket.service.CustomerManagerService;
 import ua.project.dropmarket.service.ProductService;
 import ua.project.dropmarket.service.UserManagerService;
@@ -30,19 +33,20 @@ public class UserManagerController {
     private final UserRepository userRepository;
     private final UserManagerService userService;
     private final ProductService productService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public UserManagerController(CustomerManagerService customerService, UserManagerService userService, UserRepository userRepository, ProductService productService) {
+    public UserManagerController(CustomerManagerService customerService, UserManagerService userService, UserRepository userRepository, ProductService productService, CategoryService categoryService) {
         this.customerService = customerService;
         this.userService = userService;
         this.userRepository = userRepository;
         this.productService = productService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/")
     public String getHomePage(Model model, Principal principal) {
         List<Product> products = productService.getAllProducts();
-
 
         if (principal != null) {
             model.addAttribute("username", principal.getName());
@@ -104,5 +108,28 @@ public class UserManagerController {
         Customer customer = customerService.getCustomerByUsername(username);
         model.addAttribute("customer", customer);
         return "profile";
+    }
+
+    @GetMapping("/details/{id}")
+    public String getProductDetails(@PathVariable ("id") Long id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        return "details";
+    }
+
+    @GetMapping("/categories")
+    public String getCategoryPage(Model model) {
+        List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("categories", categories);
+        return "categories";
+    }
+
+    @GetMapping("/categories/{categoryId}/products")
+    public String getProductPage(@PathVariable Long categoryId, Model model) {
+        Category category = categoryService.getCategoryById(categoryId);
+        List<Product> products = category.getProducts();
+        model.addAttribute("category", category);
+        model.addAttribute("products", products);
+        return "products";
     }
 }

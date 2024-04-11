@@ -35,8 +35,6 @@ public class Customer {
     @NotEmpty
     private String address;
 
-
-
     @OneToOne
     @MapKey
     @MapsId
