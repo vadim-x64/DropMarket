@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
+    <meta charset="UTF-8">
     <title>User Profile</title>
 </head>
 <body>
 <h1>User Profile</h1>
+<p>First Name: <span th:text="${customer.firstName}"></span></p>
+<p>Last Name: <span th:text="${customer.lastName}"></span></p>
+<p>Email: <span th:text="${customer.email}"></span></p>
+<p>Phone: <span th:text="${customer.phone}"></span></p>
+<p>Age: <span th:text="${customer.age}"></span></p>
+<p>Address: <span th:text="${customer.address}"></span></p>
+
 </body>
 </html>

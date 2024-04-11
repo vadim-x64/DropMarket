@@ -5,4 +5,5 @@ import ua.project.dropmarket.entity.Customer;
 import ua.project.dropmarket.entity.Users;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Customer findByUserUsername(String username);
 }

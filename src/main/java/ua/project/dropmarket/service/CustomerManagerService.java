@@ -15,4 +15,8 @@ public class CustomerManagerService {
     public void saveCustomerToDB(Customer customer) {
         customerRepository.save(customer);
     }
+
+    public Customer getCustomerByUsername(String username) {
+        return customerRepository.findByUserUsername(username);
+    }
 }

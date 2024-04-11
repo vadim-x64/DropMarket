@@ -45,6 +45,7 @@ public class WebSecurityConfig
                 .disable()
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(
+                                "/info",
                                 "/regis",
                                 "/login",
                                 "/static/**",
@@ -56,6 +57,7 @@ public class WebSecurityConfig
                         .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
                         .permitAll())
                 .logout((logout) -> logout
                         .permitAll()
