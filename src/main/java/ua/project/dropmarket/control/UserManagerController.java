@@ -1,27 +1,22 @@
 package ua.project.dropmarket.control;
 
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.Getter;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import ua.project.dropmarket.entity.Customer;
 import ua.project.dropmarket.entity.Users;
 import ua.project.dropmarket.repos.UserRepository;
 import ua.project.dropmarket.service.CustomerManagerService;
 import ua.project.dropmarket.service.UserManagerService;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.security.Principal;
 
 @Getter
@@ -60,6 +55,11 @@ public class UserManagerController {
     @GetMapping("/regis")
     @PreAuthorize("isAnonymous()")
     public String getRegistrationPage(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/";
+        }
+
         model.addAttribute("users", new Users());
         model.addAttribute("customer", new Customer());
         return "regis";
@@ -96,5 +96,4 @@ public class UserManagerController {
         model.addAttribute("customer", customer);
         return "profile";
     }
-
 }
