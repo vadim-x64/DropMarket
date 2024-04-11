@@ -46,11 +46,13 @@ public class UserManagerController {
 
     @GetMapping("/")
     public String getHomePage(Model model, Principal principal) {
-        List<Product> products = productService.getAllProducts();
+
 
         if (principal != null) {
             model.addAttribute("username", principal.getName());
         }
+
+        List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
         return "main";
     }
@@ -79,8 +81,7 @@ public class UserManagerController {
     }
 
     @PostMapping("/regis")
-    public String saveNewCustomer(@Valid Users users, BindingResult bindingResult,
-                                  @Valid Customer customer, BindingResult bindingResult1, Model model) {
+    public String saveNewCustomer(@Valid Users users, BindingResult bindingResult, @Valid Customer customer, BindingResult bindingResult1, Model model) {
 
         if (bindingResult.hasErrors() || bindingResult1.hasErrors()) {
             return "/regis";

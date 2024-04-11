@@ -46,7 +46,6 @@ public class WebSecurityConfig
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers(
                                 "/info",
-                                "/main",
                                 "/regis",
                                 "/login",
                                 "/static/**",
