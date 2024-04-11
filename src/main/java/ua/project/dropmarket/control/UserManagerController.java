@@ -13,11 +13,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.project.dropmarket.entity.Customer;
+import ua.project.dropmarket.entity.Product;
 import ua.project.dropmarket.entity.Users;
 import ua.project.dropmarket.repos.UserRepository;
 import ua.project.dropmarket.service.CustomerManagerService;
+import ua.project.dropmarket.service.ProductService;
 import ua.project.dropmarket.service.UserManagerService;
 import java.security.Principal;
+import java.util.List;
 
 @Getter
 @Controller
@@ -26,19 +29,25 @@ public class UserManagerController {
     private final CustomerManagerService customerService;
     private final UserRepository userRepository;
     private final UserManagerService userService;
+    private final ProductService productService;
 
     @Autowired
-    public UserManagerController(CustomerManagerService customerService, UserManagerService userService, UserRepository userRepository) {
+    public UserManagerController(CustomerManagerService customerService, UserManagerService userService, UserRepository userRepository, ProductService productService) {
         this.customerService = customerService;
         this.userService = userService;
         this.userRepository = userRepository;
+        this.productService = productService;
     }
 
     @GetMapping("/")
     public String getHomePage(Model model, Principal principal) {
+        List<Product> products = productService.getAllProducts();
+
+
         if (principal != null) {
             model.addAttribute("username", principal.getName());
         }
+        model.addAttribute("products", products);
         return "main";
     }
 
