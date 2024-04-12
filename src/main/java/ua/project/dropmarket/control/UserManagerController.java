@@ -9,21 +9,27 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ua.project.dropmarket.entity.Category;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import ua.project.dropmarket.entity.Customer;
 import ua.project.dropmarket.entity.Product;
 import ua.project.dropmarket.entity.Users;
+import ua.project.dropmarket.repos.ProductRepository;
 import ua.project.dropmarket.repos.UserRepository;
-import ua.project.dropmarket.service.CategoryService;
 import ua.project.dropmarket.service.CustomerManagerService;
 import ua.project.dropmarket.service.ProductService;
 import ua.project.dropmarket.service.UserManagerService;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Controller
@@ -33,26 +39,26 @@ public class UserManagerController {
     private final UserRepository userRepository;
     private final UserManagerService userService;
     private final ProductService productService;
-    private final CategoryService categoryService;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public UserManagerController(CustomerManagerService customerService, UserManagerService userService, UserRepository userRepository, ProductService productService, CategoryService categoryService) {
+    public UserManagerController(ProductRepository productRepository, CustomerManagerService customerService, UserManagerService userService, UserRepository userRepository, ProductService productService) {
         this.customerService = customerService;
         this.userService = userService;
         this.userRepository = userRepository;
         this.productService = productService;
-        this.categoryService = categoryService;
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/")
     public String getHomePage(Model model, Principal principal) {
 
-
         if (principal != null) {
             model.addAttribute("username", principal.getName());
         }
 
-        List<Product> products = productService.getAllProducts();
+
+        List<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
         return "main";
     }
@@ -108,29 +114,28 @@ public class UserManagerController {
         String username = principal.getName();
         Customer customer = customerService.getCustomerByUsername(username);
         model.addAttribute("customer", customer);
+        model.addAttribute("products", productService.findAll()); // Додано атрибут з усіма продуктами
         return "profile";
     }
 
-    @GetMapping("/details/{id}")
-    public String getProductDetails(@PathVariable ("id") Long id, Model model) {
-        Product product = productService.getProductById(id);
+    @GetMapping("/products")
+    public String showAddProductForm(Product product) {
+        return "products";
+    }
+
+    @PostMapping("/products")
+    public String addProduct(Product product) {
+        productService.save(product);
+        return "redirect:/products";
+    }
+
+    @GetMapping("/details/{productId}")
+    public String getProductDetails(@PathVariable("productId") Long productId, Model model) {
+        Product product = productService.findById(productId);
+        if (product == null) {
+            return "redirect:/"; // Повернення на головну сторінку, якщо товар не знайдено
+        }
         model.addAttribute("product", product);
         return "details";
-    }
-
-    @GetMapping("/categories")
-    public String getCategoryPage(Model model) {
-        List<Category> categories = categoryService.getAllCategories();
-        model.addAttribute("categories", categories);
-        return "categories";
-    }
-
-    @GetMapping("/categories/{categoryId}/products")
-    public String getProductPage(@PathVariable Long categoryId, Model model) {
-        Category category = categoryService.getCategoryById(categoryId);
-        List<Product> products = category.getProducts();
-        model.addAttribute("category", category);
-        model.addAttribute("products", products);
-        return "products";
     }
 }
