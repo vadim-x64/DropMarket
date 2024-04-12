@@ -32,6 +32,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -57,14 +58,25 @@ public class UserManagerController {
 
     @GetMapping("/")
     public String getHomePage(Model model, Principal principal) {
+        List<Product> currentUserProducts = new ArrayList<>();
+        List<Product> otherUsersProducts = new ArrayList<>();
 
         if (principal != null) {
-            model.addAttribute("username", principal.getName());
+            String username = principal.getName();
+            Users currentUser = userRepository.findByUsername(username);
+            currentUserProducts = productService.findByCreatedBy(currentUser);
+            model.addAttribute("username", username);
         }
 
+        List<Product> allProducts = productService.findAll();
+        for (Product product : allProducts) {
+            if (!currentUserProducts.contains(product)) {
+                otherUsersProducts.add(product);
+            }
+        }
 
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
+        currentUserProducts.addAll(otherUsersProducts);
+        model.addAttribute("products", currentUserProducts);
         return "main";
     }
 
