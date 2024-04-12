@@ -172,4 +172,17 @@ public class UserManagerController {
         model.addAttribute("product", product);
         return "details";
     }
+
+    @PostMapping("/update/{productId}")
+    public String updateProduct(@PathVariable("productId") Long productId,
+                                @RequestParam("name") String name,
+                                @RequestParam("description") String description,
+                                @RequestParam("producer") String producer,
+                                @RequestParam("price") BigDecimal price,
+                                @RequestParam(value = "available", required = false) boolean available,
+                                @RequestParam("photo") String photoUrl) {
+        productService.updateProduct(productId, name, description, producer, price, available, photoUrl);
+        return "redirect:/profile";
+    }
+
 }

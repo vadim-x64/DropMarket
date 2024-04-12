@@ -52,7 +52,7 @@
                 <input type="text" id="address" name="address" th:value="${customer.address}" class="form-control">
             </div>
             <div class="btn d-flex justify-content-center">
-                <a class="btn btn-outline-secondary" href="/login">
+                <a class="btn btn-outline-secondary" href="/">
                     Назад
                 </a>
                 <button class="btn btn-outline-primary" type="submit">
@@ -63,5 +63,22 @@
         <p th:text="${message}"></p>
     </div>
 </div>
+
+<style>
+    body {
+        opacity: 0; /* Початкове значення прозорості */
+        animation: fadeIn 1s ease-in-out forwards; /* Анімація засвітлення */
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Початкове значення прозорості */
+        }
+        to {
+            opacity: 1; /* Кінцеве значення прозорості */
+        }
+    }
+
+</style>
 </body>
 </html>

@@ -250,11 +250,21 @@
 
         const userInitial = document.getElementById('userInitial');
 
-        // Встановлюємо стилі для віконечка з першою буквою користувача та рандомним кольором
+        // Перевірка, чи вже був збережений колір для цього користувача
+        let userColor = localStorage.getItem(username + '_color');
+
+        // Генерація нового кольору, якщо він ще не збережений
+        if (!userColor) {
+            userColor = getRandomColor();
+            // Збереження кольору для поточного користувача
+            localStorage.setItem(username + '_color', userColor);
+        }
+
+        // Встановлення кольору та першої букви для віконця акаунту
         if (username) {
             const firstLetter = username.charAt(0).toUpperCase();
             userInitial.innerText = firstLetter;
-            userInitial.style.backgroundColor = getRandomColor();
+            userInitial.style.backgroundColor = userColor;
         }
     });
 

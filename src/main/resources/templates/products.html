@@ -25,7 +25,22 @@
     <input type="submit" value="Add">
 </form>
 
+<style>
+    body {
+        opacity: 0; /* Початкове значення прозорості */
+        animation: fadeIn 1s ease-in-out forwards; /* Анімація засвітлення */
+    }
 
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Початкове значення прозорості */
+        }
+        to {
+            opacity: 1; /* Кінцеве значення прозорості */
+        }
+    }
+
+</style>
 
 </body>
 </html>

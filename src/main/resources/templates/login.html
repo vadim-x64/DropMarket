@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<style>
+    body {
+        opacity: 0; /* Початкове значення прозорості */
+        animation: fadeIn 1s ease-in-out forwards; /* Анімація засвітлення */
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0; /* Початкове значення прозорості */
+        }
+        to {
+            opacity: 1; /* Кінцеве значення прозорості */
+        }
+    }
+
+</style>
 <div class="container">
     <div class="card" id="loginCard">
         <h1>Авторизація</h1>
