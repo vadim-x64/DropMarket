@@ -4,6 +4,10 @@ import org.springframework.stereotype.Service;
 import ua.project.dropmarket.entity.Product;
 import ua.project.dropmarket.repos.ProductRepository;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 @Service
@@ -27,4 +31,6 @@ public class ProductService {
     public Product findById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
+
+
 }

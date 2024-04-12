@@ -28,6 +28,7 @@ import ua.project.dropmarket.service.UserManagerService;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -114,7 +115,7 @@ public class UserManagerController {
         String username = principal.getName();
         Customer customer = customerService.getCustomerByUsername(username);
         model.addAttribute("customer", customer);
-        model.addAttribute("products", productService.findAll()); // Додано атрибут з усіма продуктами
+        model.addAttribute("products", productService.findAll());
         return "profile";
     }
 
@@ -124,7 +125,8 @@ public class UserManagerController {
     }
 
     @PostMapping("/products")
-    public String addProduct(Product product) {
+    public String addProduct(@Valid Product product, @RequestParam("photoUrl") String photoUrl) {
+        product.setPhoto(photoUrl);
         productService.save(product);
         return "redirect:/products";
     }
@@ -133,7 +135,7 @@ public class UserManagerController {
     public String getProductDetails(@PathVariable("productId") Long productId, Model model) {
         Product product = productService.findById(productId);
         if (product == null) {
-            return "redirect:/"; // Повернення на головну сторінку, якщо товар не знайдено
+            return "redirect:/";
         }
         model.addAttribute("product", product);
         return "details";
