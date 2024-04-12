@@ -23,7 +23,10 @@
             <div th:unless="${username}">
                 <a href="login">Login</a>
             </div>
+
+
         </div>
+        <input type="text" id="searchInput" placeholder="Введіть ключове слово для пошуку">
     </div>
 </header>
 
@@ -103,27 +106,31 @@
     <h4>КАТЕГОРІЇ</h4>
 
 
-
-<!--    -->
-    <div class="row featurette">
-        <div th:each="product : ${products}" class="col-md-4">
-            <div class="card mb-4 box-shadow">
-                <a th:href="@{'/details/' + ${product.id}}">
-                    <img class="card-img-top" th:src="${product.photo}" alt="">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${product.name}"></h5>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted" th:text="${product.createdBy.username}"></small>
-                        <small class="text-muted" th:text="${#temporals.format(product.createdAt, 'dd-MM-yyyy HH:mm:ss')}"></small>
+    <!--    -->
+    <div class="cat">
+        <div class="row featurette">
+            <div th:each="product : ${products}" class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <a th:href="@{'/details/' + ${product.id}}">
+                        <img class="card-img-top" th:src="${product.photo}" alt="">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${product.name}"></h5>
+                        <p th:if="${product.available}" class="text-success">Available</p>
+                        <p th:unless="${product.available}" class="text-danger">Not Available</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted" th:text="${product.createdBy.username}"></small>
+                            <small class="text-muted"
+                                   th:text="${#temporals.format(product.createdAt, 'dd-MM-yyyy HH:mm:ss')}"></small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<!---->
+    <!---->
     <button id="showMoreButton" class="btn btn-primary mb-4">Показати ще</button>
-
+    <div id="notFoundMessage" style="display: none; text-align: center;">Товарів не знайдено</div>
 
 
 </main>
@@ -132,13 +139,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 <script>
-    document.getElementById('scrollIcon').addEventListener('click', function() {
+    document.getElementById('scrollIcon').addEventListener('click', function () {
         const container = document.querySelector('h4');
-        container.scrollIntoView({ behavior: 'smooth' });
+        container.scrollIntoView({behavior: 'smooth'});
     });
 
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const showMoreButton = document.getElementById('showMoreButton');
         const cards = document.querySelectorAll('.card');
         const cardsToShow = 9;
@@ -155,7 +162,7 @@
         }
 
         // Обробник кліку на кнопку "Показати ще"
-        showMoreButton.addEventListener('click', function() {
+        showMoreButton.addEventListener('click', function () {
             for (let i = visibleCards; i < visibleCards + cardsToShow && i < cards.length; i++) {
                 cards[i].classList.remove('d-none');
             }
@@ -167,6 +174,43 @@
                 showMoreButton.style.display = 'none';
             }
         });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const searchQuery = this.value.trim().toLowerCase();
+        const cards = document.querySelectorAll('.card');
+        const showMoreButton = document.getElementById('showMoreButton');
+        const notFoundMessage = document.getElementById('notFoundMessage');
+
+        let foundItems = false;
+
+        cards.forEach(function (card) {
+            const cardTitle = card.querySelector('.card-title').textContent.trim().toLowerCase();
+            if (cardTitle.includes(searchQuery)) {
+                card.style.display = 'block';
+                foundItems = true;
+            } else {
+                card.style.display = 'none';
+                showMoreButton.style.display = 'none';
+            }
+        });
+
+        if (!foundItems) {
+            notFoundMessage.style.display = 'block';
+        } else {
+            notFoundMessage.style.display = 'none';
+        }
+    });
+
+
+    document.getElementById('searchInput').addEventListener('keypress', function (event) {
+        // Перевірка, чи натиснута клавіша Enter
+        if (event.key === 'Enter') {
+            // Отримання блока, до якого потрібно прокрутити
+            const featuretteBlock = document.querySelector('.cat');
+            // Плавний перехід до блока
+            featuretteBlock.scrollIntoView({behavior: 'smooth'});
+        }
     });
 </script>
 
