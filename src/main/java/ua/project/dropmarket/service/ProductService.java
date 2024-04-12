@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import ua.project.dropmarket.entity.Product;
 import ua.project.dropmarket.entity.Users;
 import ua.project.dropmarket.repos.ProductRepository;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -34,5 +36,10 @@ public class ProductService {
 
     public List<Product> findByCreatedBy(Users user) {
         return productRepository.findByCreatedBy(user);
+    }
+
+    public Product saveDate(Product product) {
+        product.setCreatedAt(LocalDateTime.now()); // Встановіть поточну дату і час перед збереженням
+        return productRepository.save(product);
     }
 }

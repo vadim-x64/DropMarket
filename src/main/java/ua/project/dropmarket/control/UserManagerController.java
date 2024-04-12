@@ -31,6 +31,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -138,7 +139,9 @@ public class UserManagerController {
         Users createdBy = userRepository.findByUsername(username);
         product.setCreatedBy(createdBy);
 
-        productService.save(product);
+        productService.saveDate(product);
+
+
         return "redirect:/products";
     }
 
