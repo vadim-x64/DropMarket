@@ -118,7 +118,10 @@ public class UserManagerController {
         String username = principal.getName();
         Customer customer = customerService.getCustomerByUsername(username);
         model.addAttribute("customer", customer);
-        model.addAttribute("products", productService.findAll());
+
+        List<Product> products = productService.findByCreatedBy(customer.getUser());
+        model.addAttribute("products", products);
+
         return "profile";
     }
 

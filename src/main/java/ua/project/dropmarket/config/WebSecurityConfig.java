@@ -47,6 +47,7 @@ public class WebSecurityConfig
                         .requestMatchers(
                                 "/info",
                                 "/regis",
+                                "/details/",
                                 "/login",
                                 "/static/**",
                                 "/resources",

@@ -2,6 +2,7 @@ package ua.project.dropmarket.service;
 
 import org.springframework.stereotype.Service;
 import ua.project.dropmarket.entity.Product;
+import ua.project.dropmarket.entity.Users;
 import ua.project.dropmarket.repos.ProductRepository;
 import java.util.List;
 
@@ -29,5 +30,9 @@ public class ProductService {
 
     public void delete(Long id) {
         productRepository.deleteById(id);
+    }
+
+    public List<Product> findByCreatedBy(Users user) {
+        return productRepository.findByCreatedBy(user);
     }
 }
