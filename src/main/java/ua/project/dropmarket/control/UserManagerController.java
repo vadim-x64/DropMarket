@@ -27,6 +27,9 @@ import ua.project.dropmarket.service.ProductService;
 import ua.project.dropmarket.service.UserManagerService;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
@@ -125,10 +128,21 @@ public class UserManagerController {
     }
 
     @PostMapping("/products")
-    public String addProduct(@Valid Product product, @RequestParam("photoUrl") String photoUrl) {
+    public String addProduct(@Valid Product product, @RequestParam("photoUrl") String photoUrl, Principal principal) {
         product.setPhoto(photoUrl);
+
+        String username = principal.getName();
+        Users createdBy = userRepository.findByUsername(username);
+        product.setCreatedBy(createdBy);
+
         productService.save(product);
         return "redirect:/products";
+    }
+
+    @PostMapping("/delete/{productId}")
+    public String deleteProduct(@PathVariable("productId") Long productId) {
+        productService.delete(productId);
+        return "redirect:/profile";
     }
 
     @GetMapping("/details/{productId}")
