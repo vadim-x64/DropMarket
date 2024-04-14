@@ -5,344 +5,154 @@
     <title>Main Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
-    <meta name="username" th:content="${username}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courier+New">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <meta name="username" th:content="${username}"/>
 </head>
 <body>
 
-<header class="p-3 mb-3 border-bottom">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
+        <img class="logo-icon" src="/static/images/logo.gif" alt="">
+        <div class="d-flex flex-wrap align-items-center justify-content-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="info" class="nav-link px-2 link-body-emphasis">Info</a></li>
             </ul>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="products" class="nav-link px-2 link-body-emphasis">Products</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Contacts</a></li>
             </ul>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Cooperation</a></li>
+            </ul>
+        </div>
+        <div>
             <div th:if="${username}">
                 <div id="userInitial" class="user-initial">
                     <a th:href="@{/profile}" th:text="${username}">
                     </a>
                 </div>
-
             </div>
             <div th:unless="${username}">
                 <a href="login">Login</a>
             </div>
-
-
         </div>
-        <input type="text" id="searchInput" placeholder="Введіть ключове слово для пошуку">
-    </div>
-</header>
+    </header>
+    <label for="searchInput"></label><input type="text" id="searchInput" placeholder="Введіть ключове слово для пошуку">
+</div>
 
 <h1>НАШІ ТОВАРИ</h1>
-
 <div class="product-img">
     <a href="#" id="scrollIcon">
         <img src="/static/images/arrow.png" alt="">
     </a>
 </div>
 
-
-<main>
-    <div class="container marketing">
-        <hr class="featurette-divider">
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">Меблі для дому. <span class="text-body-secondary">Вибери краще.</span>
-                </h2>
-                <p class="lead">Наша дропшипінгова платформа пропонує широкий вибір стильних та комфортних меблів для
-                    кожної кімнати вашого будинку. Почни створювати своє ідеальне простір прямо зараз!</p>
-            </div>
-            <div class="col-md-5">
-                <img src="/static/images/furniture.jpg"
-                     class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                     height="500" alt="Меблі для дому">
+<div class="container marketing">
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+                Меблі для дому. <span class="text-body-secondary">Вибирай краще.</span>
+            </h2>
+            <p class="lead">
+                Пропонується широкий вибір стильних та комфортних меблів для
+                кожної кімнати вашого будинку. Почніть створювати своє ідеальне
+                середовище комфорту прямо зараз.
+            </p>
+        </div>
+        <div class="col-md-5">
+            <div class="featurette-image-container">
+                <img src="/static/images/furniture.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="2500" height="2500" alt="">
             </div>
         </div>
-        <hr class="featurette-divider">
-        <div class="row featurette">
-            <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">Інструменти для будівництва. <span
-                        class="text-body-secondary">Зроби все сам.</span></h2>
-                <p class="lead">Наш асортимент включає в себе найкращі інструменти для будівництва, які допоможуть вам
-                    здійснити будь-який проект легко та ефективно. Не гай часу, почни будувати своє майбутнє вже
-                    зараз!</p>
-            </div>
-            <div class="col-md-5 order-md-1">
-                <img src="/static/images/tools.jpg"
-                     class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                     height="500" alt="Інструменти для будівництва">
-            </div>
-        </div>
-        <hr class="featurette-divider">
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">Іграшки. <span class="text-body-secondary">Розваги для всієї родини.</span>
-                </h2>
-                <p class="lead">У нашому асортименті представлені найцікавіші іграшки та найновітніші гаджети, які
-                    зроблять ваш дозвілля ще яскравішим та насиченішим. Придбайте найкращі подарунки для себе та своїх
-                    близьких прямо зараз!</p>
-            </div>
-            <div class="col-md-5">
-                <img src="/static/images/toys.jpg"
-                     class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                     height="500" alt="Іграшки та гаджети">
-            </div>
-        </div>
-        <hr class="featurette-divider">
-        <div class="row featurette">
-            <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">Гаджети та електроніка. <span class="text-body-secondary">Інновації для сучасного життя.</span>
-                </h2>
-                <p class="lead">Наш асортимент включає в себе найновітніші гаджети та електроніку, які роблять ваше
-                    життя простішим та цікавішим. Від смартфонів до дронів - ми маємо все, щоб задовольнити ваші потреби
-                    у технологіях. Приєднуйтесь до майбутнього вже сьогодні!</p>
-            </div>
-            <div class="col-md-5 order-md-1">
-                <img src="/static/images/devices.jpg"
-                     class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                     height="500" alt="Гаджети та електроніка">
-            </div>
-        </div>
-        <hr class="featurette-divider">
     </div>
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">
+                Інструменти для будівництва. <span class="text-body-secondary">Зроби все сам.</span>
+            </h2>
+            <p class="lead">
+                Наш асортимент включає в себе найкращі інструменти для будівництва, які допоможуть вам
+                здійснити будь-який проєкт легко та ефективно. Не гай часу, почни будувати своє майбутнє вже
+                зараз.
+            </p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <div class="featurette-image-container">
+                <img src="/static/images/tools.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="2500" height="2500" alt="">
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+                Колекція авто. <span class="text-body-secondary">Елегантність та стиль.</span>
+            </h2>
+            <p class="lead">
+                У нашому асортименті ви знайдете найрізноманітніші декоративні моделі автомобілів,
+                які стануть чудовим доповненням до вашого домашнього інтер'єру. Ці мініатюрні шедеври
+                не призначені для гри, але вони вражають своєю деталізацією та якістю виконання, нагадуючи
+                справжнє авто. Ви можете вибрати модель своєї улюбленої марки або навіть створити
+                власну колекцію, що буде відображати ваші інтереси та стиль.
+            </p>
+        </div>
+        <div class="col-md-5">
+            <div class="featurette-image-container">
+                <img src="/static/images/toys.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="950" height="950" alt="">
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider">
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading fw-normal lh-1">
+                Гаджети та електроніка. <span class="text-body-secondary">Інновації для сучасного життя.</span>
+            </h2>
+            <p class="lead">
+                Асортимент включає в себе найновітніші гаджети та електроніку, які роблять ваше
+                життя простішим та цікавішим. Від смартфонів до ПК - ми маємо все, щоб задовольнити ваші потреби
+                у технологіях. Приєднуйтесь до майбутнього вже сьогодні.
+            </p>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <div class="featurette-image-container">
+                <img src="/static/images/devices.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="2500" height="2500" alt="">
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider">
+</div>
 
-    <h4>КАТЕГОРІЇ</h4>
-
-
-    <!--    -->
-    <div class="cat">
-        <div class="row featurette">
-            <div th:each="product : ${products}" class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                    <a th:href="@{'/details/' + ${product.id}}">
-                        <img class="card-img-top" th:src="${product.photo}" alt="">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${product.name}"></h5>
-                        <p th:if="${product.available}" class="text-success">Available</p>
-                        <p th:unless="${product.available}" class="text-danger">Not Available</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted" th:text="${product.createdBy.username}"></small>
-                            <small class="text-muted"
-                                   th:text="${#temporals.format(product.createdAt, 'dd-MM-yyyy HH:mm:ss')}"></small>
-                        </div>
+<div class="cat">
+    <div class="row featurette">
+        <div th:each="product : ${products}" class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <a th:href="@{'/details/' + ${product.id}}">
+                    <img class="card-img-top" th:src="${product.photo}" alt="">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p th:if="${product.available}" class="text-success">Available</p>
+                    <p th:unless="${product.available}" class="text-danger">Not Available</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted" th:text="${product.createdBy.username}"></small>
+                        <small class="text-muted"
+                               th:text="${#temporals.format(product.createdAt, 'dd-MM-yyyy HH:mm:ss')}"></small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!---->
-    <button id="showMoreButton" class="btn btn-primary mb-4">Показати ще</button>
-    <div id="notFoundMessage" style="display: none; text-align: center;">Товарів не знайдено</div>
+</div>
 
-
-</main>
+<button id="showMoreButton" class="btn btn-primary mb-4">Показати ще</button>
+<div id="notFoundMessage" style="display: none; text-align: center;">Товарів не знайдено</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-<script>
-    document.getElementById('scrollIcon').addEventListener('click', function () {
-        const container = document.querySelector('h4');
-        container.scrollIntoView({behavior: 'smooth'});
-    });
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const showMoreButton = document.getElementById('showMoreButton');
-        const cardsContainer = document.querySelector('.cat');
-        const cards = document.querySelectorAll('.card');
-        const cardsToShow = 9;
-        let visibleCards = cardsToShow;
-
-        showMoreButton.addEventListener('click', function () {
-            for (let i = visibleCards; i < visibleCards + cardsToShow && i < cards.length; i++) {
-                cards[i].classList.remove('d-none');
-            }
-
-            visibleCards += cardsToShow;
-
-            // Перевіряємо, чи всі карточки вже відображені
-            if (visibleCards >= cards.length) {
-                showMoreButton.style.display = 'none';
-            }
-        });
-
-        // Функція для відображення карточок товарів одну за одною
-        function showCardsSequentially() {
-            cards.forEach(function (card, index) {
-                if (index < visibleCards) {
-                    card.classList.remove('d-none');
-                } else {
-                    card.classList.add('d-none');
-                }
-            });
-        }
-
-        // Приховує всі карточки, крім перших cardsToShow
-        showCardsSequentially();
-
-        // Перевіряє, чи потрібно відображати кнопку "Показати ще"
-        if (cards.length <= cardsToShow) {
-            showMoreButton.style.display = 'none';
-        }
-    });
-
-    document.getElementById('searchInput').addEventListener('input', function () {
-        const searchQuery = this.value.trim().toLowerCase();
-        const cards = document.querySelectorAll('.card');
-        const showMoreButton = document.getElementById('showMoreButton');
-        const notFoundMessage = document.getElementById('notFoundMessage');
-
-        let foundItems = false;
-
-        cards.forEach(function (card) {
-            const cardTitle = card.querySelector('.card-title').textContent.trim().toLowerCase();
-            if (cardTitle.includes(searchQuery)) {
-                card.style.display = 'block';
-                foundItems = true;
-            } else {
-                card.style.display = 'none';
-                showMoreButton.style.display = 'none';
-            }
-        });
-
-        if (!foundItems) {
-            notFoundMessage.style.display = 'block';
-        } else {
-            notFoundMessage.style.display = 'none';
-        }
-    });
-
-
-    document.getElementById('searchInput').addEventListener('keypress', function (event) {
-        // Перевірка, чи натиснута клавіша Enter
-        if (event.key === 'Enter') {
-            // Отримання блока, до якого потрібно прокрутити
-            const featuretteBlock = document.querySelector('.cat');
-            // Плавний перехід до блока
-            featuretteBlock.scrollIntoView({behavior: 'smooth'});
-        }
-    });
-
-
-
-
-
-    // Оголошуємо глобальну змінну для username
-    let username = "";
-
-    // Функція для генерації випадкового кольору
-    function getRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // Отримуємо значення username з метаданих сторінки
-        username = document.querySelector('meta[name="username"]').getAttribute('content');
-
-        const userInitial = document.getElementById('userInitial');
-
-        // Перевірка, чи вже був збережений колір для цього користувача
-        let userColor = localStorage.getItem(username + '_color');
-
-        // Генерація нового кольору, якщо він ще не збережений
-        if (!userColor) {
-            userColor = getRandomColor();
-            // Збереження кольору для поточного користувача
-            localStorage.setItem(username + '_color', userColor);
-        }
-
-        // Встановлення кольору та першої букви для віконця акаунту
-        if (username) {
-            const firstLetter = username.charAt(0).toUpperCase();
-            userInitial.innerText = firstLetter;
-            userInitial.style.backgroundColor = userColor;
-        }
-    });
-
-    document.getElementById('userInitial').addEventListener('click', function () {
-        window.location.href = "/profile";
-    });
-</script>
-
-<style>
-
-    body {
-        opacity: 0; /* Початкове значення прозорості */
-        animation: fadeIn 1s ease-in-out forwards; /* Анімація засвітлення */
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0; /* Початкове значення прозорості */
-        }
-        to {
-            opacity: 1; /* Кінцеве значення прозорості */
-        }
-    }
-
-
-    .user-initial {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
-        color: white;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-
-
-
-    h1, h4 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 30px;
-        color: #9cff9c;
-        font-size: 72px;
-    }
-
-    .product-img {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
-    }
-
-    @keyframes bounce {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-20px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    .product-img img {
-        width: 50px;
-        animation: bounce 2s ease-in-out infinite;
-    }
-
-    .btn-primary {
-        display: flex;
-        margin: auto;
-    }
-</style>
+<script src="../static/js/main.js"></script>
 
 </body>
 </html>

@@ -82,6 +82,11 @@ public class UserManagerController {
 
     @GetMapping("/login")
     public String getLoginPage() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/";
+        }
+
         return "login";
     }
 
