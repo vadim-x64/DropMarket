@@ -30,3 +30,14 @@ document.addEventListener('DOMContentLoaded', function () {
         showMoreButton.style.display = 'none';
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    var products = document.querySelectorAll(".card");
+    var productsHeading = document.getElementById("productsHeading");
+
+    if (products.length === 0) {
+        productsHeading.style.display = "none";
+    } else {
+        productsHeading.style.display = "flex";
+    }
+});

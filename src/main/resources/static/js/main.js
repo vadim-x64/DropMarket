@@ -108,3 +108,29 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('userInitial').addEventListener('click', function () {
     window.location.href = "/profile";
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var products = document.querySelectorAll(".cat .col-md-4");
+    var searchInput = document.getElementById("searchInput");
+    var animationSection = document.querySelector(".animation-section");
+
+    function toggleElements() {
+        if (products.length === 0) {
+            searchInput.style.display = "none";
+            animationSection.style.display = "none";
+        } else {
+            searchInput.style.display = "block";
+            animationSection.style.display = "flex";
+        }
+    }
+
+    toggleElements(); // Викликаємо один раз при завантаженні сторінки
+
+    document.getElementById("showMoreButton").addEventListener("click", function() {
+        // Симулюємо додавання ще товарів
+        var additionalProducts = document.querySelectorAll(".cat .col-md-4");
+        products = Array.prototype.concat.apply(products, additionalProducts);
+        toggleElements(); // Перевіряємо ще раз при натисканні на кнопку
+    });
+});

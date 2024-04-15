@@ -1,46 +1,149 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
+    <title>Додати товар</title>
+    <link rel="icon" href="/static/images/icon.png" type="image/png">
     <meta charset="UTF-8">
-    <title>Add Product</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
+    <link rel="stylesheet" href="../static/css/products.css">
+    <meta name="username" th:content="${username}"/>
 </head>
 <body>
-<h1>Add Product</h1>
 
-<form action="/products" method="post" enctype="multipart/form-data">
-    <label for="photoUrl">Photo URL:</label><br>
-    <input type="text" id="photoUrl" name="photoUrl"><br>
-    <label for="producer">Producer:</label><br>
-    <input type="text" id="producer" name="producer"><br>
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="description">Description:</label><br>
-    <input type="text" id="description" name="description"><br>
-    <label for="price">Price:</label><br>
-    <input type="text" id="price" name="price"><br>
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
+        <img class="logo-icon" src="/static/images/logo.gif" alt="">
+        <div class="d-flex flex-wrap align-items-center justify-content-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-2 link-body-emphasis">Головна</a></li>
+            </ul>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="info" class="nav-link px-2 link-body-emphasis">Форум</a></li>
+            </ul>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="contacts" class="nav-link px-2 link-body-emphasis">Контакти</a></li>
+            </ul>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="cooperation" class="nav-link px-2 link-body-emphasis">Співпраця</a></li>
+            </ul>
+        </div>
+        <div>
+            <div th:if="${username}">
+                <div id="userInitial" class="user-initial">
+                    <a th:href="@{/profile}" th:text="${username}">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
 
-    <label for="available">Available:</label><br>
-    <input type="checkbox" id="available" name="available" value="true"><br>
 
-    <input type="submit" value="Add">
-</form>
+<div class="card-product">
+    <div class="card-body">
+        <h5 class="card-title text-center mb-4">Вітаємо!</h5>
+        <p class="card-text">
+            Ця сторінка для того, щоб ви мали змогу додавати та розміщувати товари
+            на цій платформі. Ви, як користувач сайту маєте змогу продавати товари
+            іншим клієнтам. Просто заповніть цю форму, натисніть кнопку "Додати",
+            і коли ви перейдете до свого кабінету, ви побачите цей товар, який далі
+            можете видалити або змінити інформацію про нього. Також, після того як ви
+            це зробите, товар буде відображено для всіх користувачів сайту на головній
+            сторінці.
+        </p>
+    </div>
+</div>
 
-<style>
-    body {
-        opacity: 0; /* Початкове значення прозорості */
-        animation: fadeIn 1s ease-in-out forwards; /* Анімація засвітлення */
-    }
 
-    @keyframes fadeIn {
-        from {
-            opacity: 0; /* Початкове значення прозорості */
-        }
-        to {
-            opacity: 1; /* Кінцеве значення прозорості */
-        }
-    }
+<h1>ДОДАТИ ТОВАР</h1>
+<div class="container">
 
-</style>
+    <form class="mt-4" action="/products" method="post" enctype="multipart/form-data">
+        <div class="mb-3 row">
+            <label for="photoUrl" class="col-sm-2 col-form-label">URL фото</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="photoUrl" name="photoUrl">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="producer" class="col-sm-2 col-form-label">Виробник</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="producer" name="producer">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="name" class="col-sm-2 col-form-label">Назва</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="description" class="col-sm-2 col-form-label">Опис</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="price" class="col-sm-2 col-form-label">Ціна</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="price" name="price">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-sm-10 offset-sm-2">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="available" name="available" value="true">
+                    <label class="form-check-label" for="available">В наявності</label>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-sm-10 offset-sm-2 but">
+                <button type="submit" class="btn btn-outline-success">Додати</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="footer">
+    <footer class="py-3">
+        <ul class="nav justify-content-center pb-3 mb-3">
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">
+                    <img src="/static/images/instagram.png" alt="Instagram"> Instagram
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">
+                    <img src="/static/images/facebook.png" alt="Facebook"> Facebook
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">
+                    <img src="/static/images/telegram.png" alt="Telegram"> Telegram
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">
+                    <img src="/static/images/youtube.png" alt="YouTube"> YouTube
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">
+                    <img src="/static/images/twitter.png" alt="Twitter"> Twitter
+                </a>
+            </li>
+        </ul>
+        <p class="text-center">© 2024 DropMarket, Inc.</p>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="../static/js/products.js"></script>
 
 </body>
 </html>

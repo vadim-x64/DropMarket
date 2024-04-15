@@ -8,7 +8,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    margin: 20px auto;
     color: #62FF62;
     font-size: 72px;
 }
@@ -29,19 +29,19 @@ h1 {
 }
 
 .log {
-    color: #ff2c2c;
+    color: #FF2C2C;
     font-family: Bahnschrift, serif;
     text-decoration: none;
     font-size: 22px;
 }
 
 .log:hover {
-    color: #ff2c2c;
+    color: #FF2C2C;
     text-decoration: none;
 }
 
 .card {
-    border: 1px solid #ddd;
+    border: 1px solid #CCC;
     border-radius: 4px;
     margin-bottom: 20px;
 }
@@ -59,7 +59,7 @@ h1 {
 
 .card-text input[type="text"] {
     width: 100%;
-    border: 1px solid #ced4da;
+    border: 2px solid #CCC;
     border-radius: 4px;
     padding: 6px 12px;
     margin-bottom: 10px;
@@ -73,18 +73,33 @@ h1 {
     width: 100%;
 }
 
+.card {
+    border-radius: 0;
+    border: 2px solid #CCC;
+}
+
+.card img {
+    border-radius: 0;
+}
+
+.mb-3 input {
+    border: 2px solid #CCC;
+}
+
+.card-body .card-text input {
+    border-radius: 0;
+}
+
+.form-group input {
+    border-radius: 0;
+    border: 2px solid #CCC;
+}
+
 .image-container {
     position: relative;
     width: 100%;
     height: 300px;
     overflow: hidden;
-}
-
-.card-text input[type="checkbox"] {
-    vertical-align: middle; /* Вирівнюємо по вертикалі */
-    width: 15px; /* Задаємо ширину чекбокса */
-    height: 15px; /* Задаємо висоту чекбокса */
-    margin-right: 5px;
 }
 
 .btn-del {
@@ -105,15 +120,15 @@ h1 {
 .customer-card {
     margin: 20px;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #CCC;
     border-radius: 10px;
 }
 
 #showMoreButton {
     display: flex;
-    margin: 20px auto;
+    margin: auto auto 20px auto;
     border-radius: 0;
-    border: 1px solid #CCC;
+    border: 2px solid #CCC;
 }
 
 footer {

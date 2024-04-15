@@ -144,7 +144,21 @@ public class UserManagerController {
     }
 
     @GetMapping("/products")
-    public String showAddProductForm(Product product) {
+    public String showAddProductForm(Product product, Principal principal, Model model) {
+        List<Product> currentUserProducts = new ArrayList<>();
+
+
+        if (principal != null) {
+            String username = principal.getName();
+            Users currentUser = userRepository.findByUsername(username);
+            currentUserProducts = productService.findByCreatedBy(currentUser);
+            model.addAttribute("username", username);
+        }
+
+
+
+        model.addAttribute("products", currentUserProducts);
+
         return "products";
     }
 
