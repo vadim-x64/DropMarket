@@ -22,10 +22,8 @@ public class Users implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 2, max = 14, message = "Кількість символів повинна бути від 2 до 14")
     private String username;
 
-    @Size(min = 2, message = "Кількість символів повинна бути більша 2")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

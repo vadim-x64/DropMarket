@@ -127,7 +127,26 @@ public class UserManagerController {
     }
 
     @GetMapping("/info")
-    public String getInfoPage() {
+    public String getInfoPage(Model model, Principal principal) {
+        List<Product> currentUserProducts = new ArrayList<>();
+        List<Product> otherUsersProducts = new ArrayList<>();
+
+        if (principal != null) {
+            String username = principal.getName();
+            Users currentUser = userRepository.findByUsername(username);
+            currentUserProducts = productService.findByCreatedBy(currentUser);
+            model.addAttribute("username", username);
+        }
+
+        List<Product> allProducts = productService.findAll();
+        for (Product product : allProducts) {
+            if (!currentUserProducts.contains(product)) {
+                otherUsersProducts.add(product);
+            }
+        }
+
+        currentUserProducts.addAll(otherUsersProducts);
+        model.addAttribute("products", currentUserProducts);
         return "info";
     }
 
@@ -215,5 +234,29 @@ public class UserManagerController {
                              @RequestParam("address") String address) {
           customerService.updateCustomer(customerId, firstName, lastName, email, phone, age, address);
         return "redirect:/profile";
+    }
+
+    @GetMapping("/cooperation")
+    public String getCooperation(Model model, Principal principal) {
+        List<Product> currentUserProducts = new ArrayList<>();
+        List<Product> otherUsersProducts = new ArrayList<>();
+
+        if (principal != null) {
+            String username = principal.getName();
+            Users currentUser = userRepository.findByUsername(username);
+            currentUserProducts = productService.findByCreatedBy(currentUser);
+            model.addAttribute("username", username);
+        }
+
+        List<Product> allProducts = productService.findAll();
+        for (Product product : allProducts) {
+            if (!currentUserProducts.contains(product)) {
+                otherUsersProducts.add(product);
+            }
+        }
+
+        currentUserProducts.addAll(otherUsersProducts);
+        model.addAttribute("products", currentUserProducts);
+        return "cooperation";
     }
 }

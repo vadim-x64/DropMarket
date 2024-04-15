@@ -109,7 +109,6 @@ document.getElementById('userInitial').addEventListener('click', function () {
     window.location.href = "/profile";
 });
 
-
 document.addEventListener("DOMContentLoaded", function() {
     var products = document.querySelectorAll(".cat .col-md-4");
     var searchInput = document.getElementById("searchInput");

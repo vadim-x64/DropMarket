@@ -1,0 +1,50 @@
+
+body {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    user-select: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+    border: 0;
+}
+
+form {
+    padding: 20px;
+}
+
+.card a {
+    text-decoration: none;
+    color: #000;
+}
+
+.peephole {
+    cursor: pointer;
+}
+
+
+
+.btn-outline-success {
+    width: 30%;
+}
+
+.but {
+    display: flex;
+    justify-content: end;
+}
