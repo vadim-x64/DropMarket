@@ -1,7 +1,14 @@
-document.getElementById('scrollIcon').addEventListener('click', function (event) {
-    event.preventDefault();
-    const catSection = document.querySelector('.cat');
-    catSection.scrollIntoView({ behavior: 'smooth' });
+document.addEventListener('DOMContentLoaded', function() {
+    let scrollIcon = document.getElementById('scrollIcon');
+    let catSection = document.querySelector('.cat');
+    scrollIcon.addEventListener('click', function(event) {
+        event.preventDefault();
+        let catPosition = catSection.offsetTop;
+        window.scrollTo({
+            top: catPosition,
+            behavior: 'smooth'
+        });
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
