@@ -48,6 +48,7 @@ public class WebSecurityConfig
                                 "/info",
                                 "/regis",
                                 "/details/{id}",
+                                "/cooperation",
                                 "/login",
                                 "/static/**",
                                 "/resources",

@@ -202,7 +202,27 @@ public class UserManagerController {
     }
 
     @GetMapping("/details/{productId}")
-    public String getProductDetails(@PathVariable("productId") Long productId, Model model) {
+    public String getProductDetails(@PathVariable("productId") Long productId, Model model, Principal principal) {
+        List<Product> currentUserProducts = new ArrayList<>();
+        List<Product> otherUsersProducts = new ArrayList<>();
+
+        if (principal != null) {
+            String username = principal.getName();
+            Users currentUser = userRepository.findByUsername(username);
+            currentUserProducts = productService.findByCreatedBy(currentUser);
+            model.addAttribute("username", username);
+        }
+
+        List<Product> allProducts = productService.findAll();
+        for (Product product : allProducts) {
+            if (!currentUserProducts.contains(product)) {
+                otherUsersProducts.add(product);
+            }
+        }
+
+        currentUserProducts.addAll(otherUsersProducts);
+        model.addAttribute("products", currentUserProducts);
+
         Product product = productService.findById(productId);
         if (product == null) {
             return "redirect:/";

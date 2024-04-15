@@ -15,6 +15,7 @@ h1 {
 
 .img-content {
     text-align: center; /* Вирівнюємо фото по центру */
+    margin: 50px auto;
 }
 
 .img-content img {
