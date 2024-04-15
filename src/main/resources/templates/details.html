@@ -20,10 +20,10 @@
                 <li><a href="/" class="nav-link px-2 link-body-emphasis">Головна</a></li>
             </ul>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="info" class="nav-link px-2 link-body-emphasis">Форум</a></li>
+                <li><a href="/info" class="nav-link px-2 link-body-emphasis">Форум</a></li>
             </ul>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="cooperation" class="nav-link px-2 link-body-emphasis">Співпраця</a></li>
+                <li><a href="/cooperation" class="nav-link px-2 link-body-emphasis">Співпраця</a></li>
             </ul>
         </div>
         <div>
@@ -43,18 +43,53 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6">
-            <img class="img-fluid" th:src="${product.photo}" alt="Product Image">
+            <div class="photo-container">
+                <img class="img-fluid" th:src="${product.photo}" alt="Product Image">
+            </div>
         </div>
         <div class="col-md-6">
-            <h2 th:text="${product.name}"></h2>
-            <p th:text="${product.producer}"></p>
-            <p th:if="${product.available}" class="text-success">Available</p>
-            <p th:unless="${product.available}" class="text-danger">Not Available</p>
-            <p th:text="${product.price}"></p>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row">Назва</th>
+                    <td th:text="${product.name}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">Виробник</th>
+                    <td th:text="${product.producer}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">В наявності?</th>
+                    <td>
+                        <span th:if="${product.available}" class="text-success">Так</span>
+                        <span th:unless="${product.available}" class="text-danger">Ні</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Ціна</th>
+                    <td th:text="${product.price}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-<p th:text="${product.description}"></p>
+
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="card text-center">
+
+                <div class="card-body">
+                    <h3>Опис</h3>
+                    <p th:text="${product.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="footer">
     <footer class="py-3">

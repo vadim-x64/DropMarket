@@ -61,6 +61,10 @@ h1 {
     padding: 15px;
 }
 
+.card-body input {
+    outline: none;
+}
+
 .card-text input[type="text"] {
     width: 100%;
     border: 2px solid #CCC;

@@ -97,22 +97,22 @@
 
                 <div class="card-body">
                     <p class="card-text">
-                        <input type="text" id="photo" name="photo" th:value="${product.photo}">
+                        <input type="text" id="photo" name="photo" th:value="${product.photo}" placeholder="URL">
                     </p>
                     <p class="card-text">
-                        <input type="text" th:value="${product.name}" name="name">
-                    </p>
-
-                    <p class="card-text">
-                        <input type="text" th:value="${product.description}" name="description">
+                        <input type="text" th:value="${product.name}" name="name" placeholder="Назва">
                     </p>
 
                     <p class="card-text">
-                        <input type="text" th:value="${product.producer}" name="producer">
+                        <input type="text" th:value="${product.description}" name="description" placeholder="Опис">
                     </p>
 
                     <p class="card-text">
-                        <input type="text" th:value="${product.price}" name="price">
+                        <input type="text" th:value="${product.producer}" name="producer" placeholder="Виробник">
+                    </p>
+
+                    <p class="card-text">
+                        <input type="text" th:value="${product.price}" name="price" placeholder="Ціна">
                     </p>
 
                     <div class="mb-3 row">
