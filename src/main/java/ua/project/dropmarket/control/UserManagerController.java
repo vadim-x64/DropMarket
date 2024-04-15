@@ -190,4 +190,16 @@ public class UserManagerController {
         return "redirect:/profile";
     }
 
+
+    @PostMapping("/updateCustomer/{customerId}")
+    public String updateCustomer(@PathVariable("customerId") Long customerId,
+                             @RequestParam("firstName") String firstName,
+                             @RequestParam("lastName") String lastName,
+                             @RequestParam("email") String email,
+                             @RequestParam("phone") int phone,
+                             @RequestParam("age") int age,
+                             @RequestParam("address") String address) {
+          customerService.updateCustomer(customerId, firstName, lastName, email, phone, age, address);
+        return "redirect:/profile";
+    }
 }
