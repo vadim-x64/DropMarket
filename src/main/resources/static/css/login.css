@@ -7,11 +7,18 @@ body {
     height: 100vh;
     margin: 0;
     user-select: none;
+    font-family: Bahnschrift, serif;
+}
+
+.card h1 {
+    font-size: 48px;
+    text-align: center;
+    color: #000;
 }
 
 .container {
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
 }
 
 .card {
@@ -20,12 +27,6 @@ body {
     border-radius: 0;
     border: 0;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-}
-
-.card a {
-    text-align: center;
-    text-decoration: none;
-    color: #000;
 }
 
 .card-body {
@@ -38,21 +39,29 @@ form {
     padding: 20px;
 }
 
+.form-check label {
+    color: #CCC;
+    font-size: 18px;
+}
+
 p {
     text-align: center;
+    font-size: 18px;
 }
 
 .card-body p a {
     text-decoration: none;
-    color: #00B800;
+    color: #62FF62;
 }
 
 .form-group input {
+    color: #000;
     font-size: 18px;
 }
 
 .submit-btn {
     width: 100%;
+    font-size: 18px;
 }
 
 @keyframes fadeIn {

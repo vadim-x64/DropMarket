@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
-    <title>Головна</title>
+    <title>Співпраця</title>
     <link rel="icon" href="/static/images/icon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -11,7 +11,6 @@
     <meta name="username" th:content="${username}"/>
 </head>
 <body>
-
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
         <img class="logo-icon" src="/static/images/logo.gif" alt="">
@@ -39,60 +38,39 @@
         </div>
     </header>
 </div>
-
 <h1>Надішліть нам листа, і наш менеджер <br> обов'язково з вами зв'яжеться найближчим часом</h1>
-
 <form id="dropshipping-form">
     <label for="name"></label>
     <input type="text" id="name" name="name" placeholder="Ім'я" required>
-
     <label for="email"></label>
     <input type="email" id="email" name="email" placeholder="Пошта" required>
-
     <label for="phone"></label>
     <input type="num" id="phone" name="phone" placeholder="Телефон" required>
-
     <label for="message"></label>
     <div id="charCount" class="d-flex justify-content-end">0 / 2000</div>
     <textarea id="message" name="message" rows="4" maxlength="2000" required></textarea>
-
     <button type="submit" class="btn btn-outline-success">Відправити</button>
-
 </form>
-
-<div class="footer">
-    <footer class="py-3">
-        <ul class="nav justify-content-center pb-3 mb-3">
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/instagram.png" alt="Instagram"> Instagram
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/facebook.png" alt="Facebook"> Facebook
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/telegram.png" alt="Telegram"> Telegram
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/youtube.png" alt="YouTube"> YouTube
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/twitter.png" alt="Twitter"> Twitter
-                </a>
-            </li>
-        </ul>
-        <p class="text-center">© 2024 DropMarket, Inc.</p>
-    </footer>
+<footer class="d-flex flex-wrap justify-content-between align-items-center p-5 border-top">
+    <div class="col-md-4 d-flex flex-column align-items-start">
+        <span>Номер менеджера</span>
+        <a href="tel:+38 (067) 987 56 43" class="mb-2"> +38 (067) 987 56 43</a>
+        <span>Гаряча лінія</span>
+        <a href="tel:+38 (097) 123 45 67" class="mb-2">+38 (097) 123 45 67</a>
+    </div>
+    <div class="col-md-4 d-flex flex-column align-items-center">
+        <span>Зв'яжіться з нами</span>
+        <a href="mailto:example1@example.com" class="mb-2">manager.market@gmail.com</a>
+        <a href="mailto:example2@example.com" class="mb-2">ceo.market@gmail.com</a>
+    </div>
+    <div class="col-md-4 d-flex flex-column align-items-end">
+        <span>Адреса</span>
+        <a href="https://www.google.com/maps?q=вул. Київська 123, м. Київ" class="mb-2" target="_blank">вул. Київська 123, м. Київ</a>
+    </div>
+</footer>
+<div class="col-12 text-center">
+    <span>© 2024 DropMarket, Inc. Усі права захищено.</span>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 <script src="../static/js/cooperation.js"></script>

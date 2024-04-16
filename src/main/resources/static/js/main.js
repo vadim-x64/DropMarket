@@ -1,9 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let scrollIcon = document.getElementById('scrollIcon');
     let catSection = document.querySelector('.cat');
-    scrollIcon.addEventListener('click', function(event) {
+
+    scrollIcon.addEventListener('click', function (event) {
         event.preventDefault();
+
         let catPosition = catSection.offsetTop;
+
         window.scrollTo({
             top: catPosition,
             behavior: 'smooth'
@@ -21,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let i = visibleCards; i < visibleCards + cardsToShow && i < cards.length; i++) {
             cards[i].classList.remove('d-none');
         }
+
         visibleCards += cardsToShow;
 
         if (visibleCards >= cards.length) {
@@ -37,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
     showCardsSequentially();
 
     if (cards.length <= cardsToShow) {
@@ -53,6 +58,7 @@ document.getElementById('searchInput').addEventListener('input', function () {
 
     cards.forEach(function (card) {
         const cardTitle = card.querySelector('.card-title').textContent.trim().toLowerCase();
+
         if (cardTitle.includes(searchQuery)) {
             card.style.display = 'block';
             foundItems = true;
@@ -81,9 +87,11 @@ let username = "";
 function getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
+
     for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
     }
+
     return color;
 }
 
@@ -109,10 +117,10 @@ document.getElementById('userInitial').addEventListener('click', function () {
     window.location.href = "/profile";
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    var products = document.querySelectorAll(".cat .col-md-4");
-    var searchInput = document.getElementById("searchInput");
-    var animationSection = document.querySelector(".animation-section");
+document.addEventListener("DOMContentLoaded", function () {
+    let products = document.querySelectorAll(".cat .col-md-4");
+    let searchInput = document.getElementById("searchInput");
+    let animationSection = document.querySelector(".animation-section");
 
     function toggleElements() {
         if (products.length === 0) {
@@ -124,12 +132,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    toggleElements(); // Викликаємо один раз при завантаженні сторінки
+    toggleElements();
 
-    document.getElementById("showMoreButton").addEventListener("click", function() {
-        // Симулюємо додавання ще товарів
-        var additionalProducts = document.querySelectorAll(".cat .col-md-4");
+    document.getElementById("showMoreButton").addEventListener("click", function () {
+        let additionalProducts = document.querySelectorAll(".cat .col-md-4");
+
         products = Array.prototype.concat.apply(products, additionalProducts);
-        toggleElements(); // Перевіряємо ще раз при натисканні на кнопку
+        toggleElements();
     });
 });

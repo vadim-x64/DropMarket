@@ -2,25 +2,30 @@ body {
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
     user-select: none;
+    font-family: Bahnschrift, serif;
+}
+
+header .col-12 {
+    background: none;
 }
 
 h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    margin: 20px auto;
     color: #62FF62;
     font-size: 72px;
 }
 
 .img-content {
-    text-align: center; /* Вирівнюємо фото по центру */
+    text-align: center;
     margin: 50px auto;
 }
 
 .img-content img {
-    width: 100%; /* Забезпечуємо, щоб фото не виходило за межі контейнера */
-    height: auto; /* Зберігаємо пропорції фото */
+    width: 100%;
+    height: auto;
 }
 
 h2 {
@@ -32,11 +37,26 @@ h2 {
     font-size: 72px;
 }
 
+h3 {
+    color: #000;
+    font-size: 32px;
+}
+
+.feature p {
+    color: #636363;
+    font-size: 18px;
+}
+
+.card .cards {
+    color: #000;
+    font-size: 24px;
+}
+
 .nav-link {
     color: #000;
-    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+    font-size: 24px;
     margin: 20px;
-    font-size: 22px;
 }
 
 .nav-link:hover {
@@ -54,34 +74,16 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
     color: #FFF;
     cursor: pointer;
 }
 
 .log {
     color: #62FF62;
-    font-family: Bahnschrift, serif;
     text-decoration: none;
-    font-size: 22px;
-}
-
-footer {
-    background-color: #E8E8E8;
-}
-
-.nav img {
-    width: 35px;
-}
-
-.nav-item a {
-    font-size: 22px;
-}
-
-.text-center {
-    font-family: Bahnschrift, serif;
-    font-size: 18px;
-    color: #000;
+    font-size: 24px;
 }
 
 .feature-icon img {
@@ -92,6 +94,46 @@ footer {
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
     border-radius: 0;
     border: none;
+}
+
+.card p {
+    color: #636363;
+    font-size: 18px;
+}
+
+.lead li {
+    list-style: none;
+}
+
+.px-4 .lead {
+    font-size: 24px;
+    color: #636363;
+}
+
+footer {
+    background-color: #E8E8E8;
+    height: 300px;
+    font-size: 18px;
+}
+
+.d-flex .col-md-4 a {
+    text-decoration: none;
+    color: #000;
+}
+
+.d-flex .col-md-4 span {
+    color: #636363;
+}
+
+.col-12 span {
+    color: #636363;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.col-12 {
+    background-color: #E8E8E8;
+    padding: 20px;
 }
 
 @keyframes fadeIn {

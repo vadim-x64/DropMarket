@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
-    <title>Дропшипінг</title>
+    <title>Форум</title>
     <link rel="icon" href="/static/images/icon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -11,7 +11,6 @@
     <meta name="username" th:content="${username}"/>
 </head>
 <body>
-
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
         <img class="logo-icon" src="/static/images/logo.gif" alt="">
@@ -39,66 +38,64 @@
         </div>
     </header>
 </div>
-
-<h1>DropMarket</h1>
-
+<h1>DROPMARKET</h1>
 <div class="px-4 py-5 text-center">
     <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">Дропшипінг - це модель бізнесу, в якій ви можете продавати продукцію без необхідності утримувати її на складі. Ви просто передаєте замовлення та доставку своєму постачальнику, а він відправляє товар безпосередньо вашому покупцеві.</p>
-        <p class="lead mb-4">Переваги дропшипінгу:</p>
+        <p class="lead mb-4">
+            Дропшипінг - це модель бізнесу, в якій ви можете продавати
+            продукцію без необхідності утримувати її на складі. Ви просто передаєте
+            замовлення та доставку своєму постачальнику, а він відправляє товар
+            безпосередньо вашому покупцеві.
+        </p>
+        <p class="lead mb-4">Переваги дропшипінгу</p>
         <ul class="lead text-start">
-            <li>Мінімальні витрати на старт.</li>
-            <li>Широкий вибір продуктів.</li>
-            <li>Безкоштовне розширення асортименту.</li>
-            <li>Мінімізація ризику залишків.</li>
+            <li>✔️ Мінімальні витрати на старт.</li>
+            <li>✔️ Широкий вибір продуктів.</li>
+            <li>✔️ Безкоштовне розширення асортименту.</li>
+            <li>✔️ Мінімізація ризику залишків.</li>
         </ul>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <a href="cooperation" class="btn btn-outline-success btn-lg">Долучитися до дропшипінгу</a>
         </div>
     </div>
 </div>
-
 <div class="img-content">
 <img src="/static/images/shopping.jpg" alt="">
 </div>
-
 <h2>Чому саме дропшипінг?</h2>
 <div class="container px-4 py-5" id="featured-3">
-
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         <div class="feature col">
             <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
                 <img src="/static/images/product.png" alt="">
             </div>
-            <h3 class="fs-2 text-body-emphasis">Широкий вибір товарів</h3>
+            <h3 class="text-body-emphasis">Широкий вибір товарів</h3>
             <p>Ви можете обирати з широкого асортименту товарів без необхідності власного складу.</p>
         </div>
         <div class="feature col">
             <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
                 <img src="/static/images/money.png" alt="">
             </div>
-            <h3 class="fs-2 text-body-emphasis">Мінімальні витрати</h3>
+            <h3 class="text-body-emphasis">Мінімальні витрати</h3>
             <p>Дропшипінг дозволяє запустити бізнес з мінімальними витратами на інвентар та складське приміщення.</p>
         </div>
         <div class="feature col">
             <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
                 <img src="/static/images/expand.png" alt="">
             </div>
-            <h3 class="fs-2 text-body-emphasis">Масштабованість</h3>
+            <h3 class="text-body-emphasis">Масштабованість</h3>
             <p>Ви можете легко розширити свій бізнес, додаючи нові товари без додаткових інвестицій у складське устаткування.</p>
         </div>
     </div>
 </div>
-
 <h1>Як почати працювати?</h1>
-
 <div class="container px-4 py-5" id="steps-section">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col">
             <div class="card h-100 text-center">
                 <div class="card-body">
                     <h1 class="display-1">1</h1>
-                    <p class="card-text fs-5">Зареєструйтесь</p>
+                    <p class="card-text cards">Зареєструйтесь</p>
                     <p class="card-text">Реєстрація на нашому сайті - перший крок у розпочатку вашого бізнесу. Створіть обліковий запис та заповніть всі необхідні дані для дропшипінгу.</p>
                 </div>
             </div>
@@ -107,7 +104,7 @@
             <div class="card h-100 text-center">
                 <div class="card-body">
                     <h1 class="display-1">2</h1>
-                    <p class="card-text fs-5">Залиште заявку</p>
+                    <p class="card-text cards">Залиште заявку</p>
                     <p class="card-text">Після реєстрації заповніть заявку на дропшипінг. Наш менеджер зв'яжеться з вами для підтвердження вашої заявки та надання подальших інструкцій.</p>
                 </div>
             </div>
@@ -116,7 +113,7 @@
             <div class="card h-100 text-center">
                 <div class="card-body">
                     <h1 class="display-1">3</h1>
-                    <p class="card-text fs-5">Розмістіть товари</p>
+                    <p class="card-text cards">Розмістіть товари</p>
                     <p class="card-text">Після підтвердження заявки оберіть товари з нашого каталогу та розмістіть їх на сайті або платформі для продажу.</p>
                 </div>
             </div>
@@ -125,7 +122,7 @@
             <div class="card h-100 text-center">
                 <div class="card-body">
                     <h1 class="display-1">4</h1>
-                    <p class="card-text fs-5">Відстежуйте статус замовлення</p>
+                    <p class="card-text cards">Відстежуйте статус замовлення</p>
                     <p class="card-text">Після розміщення замовлення відстежуйте його стан у вашому особистому кабінеті. Надайте інформацію покупцю про статус його замовлення.</p>
                 </div>
             </div>
@@ -134,7 +131,7 @@
             <div class="card h-100 text-center">
                 <div class="card-body">
                     <h1 class="display-1">5</h1>
-                    <p class="card-text fs-5">Отримайте кошти</p>
+                    <p class="card-text cards">Отримайте кошти</p>
                     <p class="card-text">Після успішної доставки товарів покупцю отримуйте оплату за них. Ми забезпечуємо швидкий та зручний процес оплати.</p>
                 </div>
             </div>
@@ -143,47 +140,33 @@
             <div class="card h-100 text-center">
                 <div class="card-body">
                     <h1 class="display-1">6</h1>
-                    <p class="card-text fs-5">Збільшуйте продажі</p>
+                    <p class="card-text cards">Збільшуйте продажі</p>
                     <p class="card-text">Постійно працюйте над рекламою та розвитком бізнесу, щоб залучити нових клієнтів та збільшити обороти.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="footer">
-    <footer class="py-3">
-        <ul class="nav justify-content-center pb-3 mb-3">
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/instagram.png" alt="Instagram"> Instagram
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/facebook.png" alt="Facebook"> Facebook
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/telegram.png" alt="Telegram"> Telegram
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/youtube.png" alt="YouTube"> YouTube
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/twitter.png" alt="Twitter"> Twitter
-                </a>
-            </li>
-        </ul>
-        <p class="text-center">© 2024 DropMarket, Inc.</p>
-    </footer>
+<footer class="d-flex flex-wrap justify-content-between align-items-center p-5 border-top">
+    <div class="col-md-4 d-flex flex-column align-items-start">
+        <span>Номер менеджера</span>
+        <a href="tel:+38 (067) 987 56 43" class="mb-2"> +38 (067) 987 56 43</a>
+        <span>Гаряча лінія</span>
+        <a href="tel:+38 (097) 123 45 67" class="mb-2">+38 (097) 123 45 67</a>
+    </div>
+    <div class="col-md-4 d-flex flex-column align-items-center">
+        <span>Зв'яжіться з нами</span>
+        <a href="mailto:example1@example.com" class="mb-2">manager.market@gmail.com</a>
+        <a href="mailto:example2@example.com" class="mb-2">ceo.market@gmail.com</a>
+    </div>
+    <div class="col-md-4 d-flex flex-column align-items-end">
+        <span>Адреса</span>
+        <a href="https://www.google.com/maps?q=вул. Київська 123, м. Київ" class="mb-2" target="_blank">вул. Київська 123, м. Київ</a>
+    </div>
+</footer>
+<div class="col-12 text-center">
+    <span>© 2024 DropMarket, Inc. Усі права захищено.</span>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 <script src="../static/js/info.js"></script>
