@@ -14,6 +14,20 @@ h1 {
     font-size: 72px;
 }
 
+#charCount {
+    color: #62FF62;
+}
+
+.mb-3 textarea {
+    border-radius: 0;
+    border: 2px solid #CCC;
+    color: #000;
+    font-size: 18px;
+    outline: none;
+    width: 100%;
+    padding: 5px 10px;
+}
+
 header .col-12 {
     background: none;
 }
@@ -79,6 +93,11 @@ header .col-12 {
     border: 2px solid #CCC;
 }
 
+.block-del {
+    background-color: #F4F4F4;
+    border-radius: 0;
+}
+
 .card img {
     border-radius: 0;
 }
@@ -116,7 +135,7 @@ header .col-12 {
 }
 
 .btn-del img {
-    width: 25px;
+    width: 20px;
 }
 
 .btn {

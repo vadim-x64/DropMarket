@@ -43,13 +43,13 @@
                 <label for="firstName"></label>
                 <input type="text" class="form-control" id="firstName" name="firstName"
                        th:value="${customer.firstName}"
-                       placeholder="Ім'я" required>
+                       placeholder="Ім'я" required maxlength="50">
             </div>
             <div class="form-group">
                 <label for="lastName"></label>
                 <input type="text" class="form-control" id="lastName" name="lastName"
                        th:value="${customer.lastName}"
-                       placeholder="Прізвище" required>
+                       placeholder="Прізвище" required maxlength="50">
             </div>
             <div class="form-group">
                 <label for="email"></label>
@@ -58,18 +58,18 @@
             </div>
             <div class="form-group">
                 <label for="phone"></label>
-                <input type="tel" class="form-control" id="phone" name="phone" th:value="${customer.phone}"
-                       placeholder="Телефон" required>
+                <input type="text" class="form-control" id="phone" name="phone" th:value="${customer.phone}"
+                       placeholder="Телефон" required maxlength="10">
             </div>
             <div class="form-group">
                 <label for="age"></label>
-                <input type="number" class="form-control" id="age" name="age" th:value="${customer.age}"
-                       placeholder="Вік" required>
+                <input type="num" class="form-control" id="age" name="age" th:value="${customer.age}"
+                       placeholder="Вік" required maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
             </div>
             <div class="form-group">
                 <label for="address"></label>
                 <input type="text" class="form-control" id="address" name="address" th:value="${customer.address}"
-                       placeholder="Адреса" required>
+                       placeholder="Адреса" required maxlength="50">
             </div>
             <br>
             <div class="d-flex justify-content-between align-items-center">
@@ -82,6 +82,15 @@
 <div class="row featurette m-1">
     <div th:each="product : ${products}" class="col-md-4 col-sm-6">
         <div class="card mb-4 box-shadow">
+            <div class="block-del">
+                <div class="del-sec">
+                    <form th:action="@{'/delete/' + ${product.id}}" method="post">
+                        <button type="submit" class="btn-del">
+                            <img src="/static/images/delete.png" alt="">
+                        </button>
+                    </form>
+                </div>
+            </div>
             <form th:action="@{'/update/' + ${product.id}}" method="post">
                 <a th:href="@{'/details/' + ${product.id}}">
                     <div class="image-container">
@@ -90,19 +99,22 @@
                 </a>
                 <div class="card-body">
                     <p class="card-text">
-                        <input type="text" id="photo" name="photo" th:value="${product.photo}" placeholder="URL">
+                        <input type="text" id="photo" name="photo" th:value="${product.photo}" placeholder="URL" required>
                     </p>
                     <p class="card-text">
-                        <input type="text" th:value="${product.name}" name="name" placeholder="Назва">
+                        <input type="text" th:value="${product.name}" name="name" placeholder="Назва" required maxlength="50">
+                    </p>
+                    <div id="charCount" class="d-flex justify-content-end">0 / 2000</div>
+                    <div class="mb-3 row">
+                        <p class="card-text">
+                            <textarea type="text" th:value="${product.description}" id="description" name="description" placeholder="Опис" required maxlength="2000">[[${product.description}]]</textarea>
+                        </p>
+                    </div>
+                    <p class="card-text">
+                        <input type="text" th:value="${product.producer}" name="producer" placeholder="Виробник" required maxlength="50">
                     </p>
                     <p class="card-text">
-                        <input type="text" th:value="${product.description}" name="description" placeholder="Опис">
-                    </p>
-                    <p class="card-text">
-                        <input type="text" th:value="${product.producer}" name="producer" placeholder="Виробник">
-                    </p>
-                    <p class="card-text">
-                        <input type="text" th:value="${product.price}" name="price" placeholder="Ціна">
+                        <input type="text" th:value="${product.price}" name="price" placeholder="Ціна" required maxlength="50" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </p>
                     <div class="mb-3 row">
                         <div class="col-sm-10">
@@ -117,13 +129,6 @@
                     </div>
                 </div>
             </form>
-            <div class="del-sec">
-                <form th:action="@{'/delete/' + ${product.id}}" method="post">
-                    <button type="submit" class="btn-del">
-                        <img src="/static/images/delete.png" alt="">
-                    </button>
-                </form>
-            </div>
         </div>
     </div>
 </div>

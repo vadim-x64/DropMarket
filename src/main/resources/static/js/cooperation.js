@@ -49,3 +49,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     });
 });
+
+function formatPhone(input) {
+    let phoneNumber = input.value.replace(/\D/g, '');
+
+    if (phoneNumber.length === 0 || phoneNumber.charAt(0) !== '0') {
+        phoneNumber = '0' + phoneNumber;
+    }
+
+    let formattedPhoneNumber = '';
+
+    for (let i = 0; i < phoneNumber.length; i++) {
+        if (i === 3 || i === 6 || i === 8 || i === 10) {
+            formattedPhoneNumber += '-';
+        }
+        formattedPhoneNumber += phoneNumber.charAt(i);
+    }
+
+    if (formattedPhoneNumber.length <= 13) {
+        input.value = formattedPhoneNumber;
+    } else {
+        input.value = formattedPhoneNumber.slice(0, 13);
+    }
+
+    if (phoneNumber.length === 0) {
+        input.value = '';
+    }
+}
+
+document.getElementById("phone").addEventListener("keydown", function(event) {
+    if (event.key === "Backspace") {
+        let phoneNumber = this.value.replace(/\D/g, '');
+
+        if (phoneNumber.length > 1) {
+            formatPhone(this);
+        } else {
+            this.value = '';
+        }
+    }
+});
+
+document.getElementById('firstName').addEventListener('input', function(event) {
+    this.value = this.value.replace(/[^a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ'\s]/g, '');
+});

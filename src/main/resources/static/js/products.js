@@ -32,3 +32,12 @@ document.addEventListener('DOMContentLoaded', function () {
         userInitial.style.backgroundColor = userColor;
     }
 });
+
+const messageInput = document.getElementById('description');
+const charCount = document.getElementById('charCount');
+
+messageInput.addEventListener('input', function() {
+    const maxLength = 2000;
+    const currentLength = this.value.length;
+    charCount.textContent = `${currentLength} / ${maxLength}`;
+});

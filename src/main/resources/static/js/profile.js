@@ -43,3 +43,20 @@ document.addEventListener("DOMContentLoaded", function() {
         productsHeading.style.display = "flex";
     }
 });
+
+document.getElementById('firstName').addEventListener('input', function(event) {
+    this.value = this.value.replace(/[^a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ'\s]/g, '');
+});
+
+document.getElementById('lastName').addEventListener('input', function(event) {
+    this.value = this.value.replace(/[^a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ'\s]/g, '');
+});
+
+const messageInput = document.getElementById('description');
+const charCount = document.getElementById('charCount');
+
+messageInput.addEventListener('input', function() {
+    const maxLength = 2000;
+    const currentLength = this.value.length;
+    charCount.textContent = `${currentLength} / ${maxLength}`;
+});

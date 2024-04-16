@@ -40,12 +40,12 @@
 </div>
 <h1>Надішліть нам листа, і наш менеджер <br> обов'язково з вами зв'яжеться найближчим часом</h1>
 <form id="dropshipping-form">
-    <label for="name"></label>
-    <input type="text" id="name" name="name" placeholder="Ім'я" required>
+    <label for="firstName"></label>
+    <input type="text" id="firstName" name="firstName" placeholder="Ім'я" required maxlength="50">
     <label for="email"></label>
-    <input type="email" id="email" name="email" placeholder="Пошта" required>
+    <input type="email" id="email" name="email" placeholder="Пошта" required maxlength="50">
     <label for="phone"></label>
-    <input type="num" id="phone" name="phone" placeholder="Телефон" required>
+    <input type="text" id="phone" name="phone" placeholder="Телефон" maxlength="13" oninput="formatPhone(this);" required>
     <label for="message"></label>
     <div id="charCount" class="d-flex justify-content-end">0 / 2000</div>
     <textarea id="message" name="message" rows="4" maxlength="2000" required></textarea>

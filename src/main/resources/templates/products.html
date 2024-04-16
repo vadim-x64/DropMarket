@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
-    <title>Додати товар</title>
+    <title>Налаштування</title>
     <link rel="icon" href="/static/images/icon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -54,31 +54,32 @@
         <div class="mb-3 row">
             <label for="photoUrl" class="col-sm-2 col-form-label">URL фото</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="photoUrl" name="photoUrl">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="producer" class="col-sm-2 col-form-label">Виробник</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="producer" name="producer">
+                <input type="text" class="form-control" id="photoUrl" name="photoUrl" required>
             </div>
         </div>
         <div class="mb-3 row">
             <label for="name" class="col-sm-2 col-form-label">Назва</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name">
+                <input type="text" class="form-control" id="name" name="name" required maxlength="50">
             </div>
         </div>
         <div class="mb-3 row">
+            <label for="producer" class="col-sm-2 col-form-label">Виробник</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="producer" name="producer" required maxlength="50">
+            </div>
+        </div>
+        <div id="charCount" class="d-flex justify-content-end">0 / 2000</div>
+        <div class="mb-3 row">
             <label for="description" class="col-sm-2 col-form-label">Опис</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="description" name="description">
+                <textarea type="text" class="form-control" id="description" name="description" required maxlength="2000"></textarea>
             </div>
         </div>
         <div class="mb-3 row">
             <label for="price" class="col-sm-2 col-form-label">Ціна</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="price" name="price">
+                <input type="text" class="form-control" id="price" name="price" required maxlength="50" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
         </div>
         <div class="mb-3 row">

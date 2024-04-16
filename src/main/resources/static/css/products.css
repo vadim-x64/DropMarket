@@ -28,6 +28,10 @@ header .col-12 {
     color: #000;
 }
 
+#charCount {
+    color: #62FF62;
+}
+
 .logo-icon {
     width: 100px;
 }
@@ -40,11 +44,20 @@ header .col-12 {
     justify-content: center;
     align-items: center;
     font-size: 24px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
     color: #FFF;
     cursor: pointer;
 }
 
 .mb-3 input {
+    border-radius: 0;
+    border: 2px solid #CCC;
+    color: #000;
+    font-size: 18px;
+}
+
+.mb-3 textarea {
     border-radius: 0;
     border: 2px solid #CCC;
     color: #000;
@@ -64,6 +77,10 @@ header .col-12 {
 .but {
     display: flex;
     justify-content: end;
+}
+
+.btn {
+    font-size: 18px;
 }
 
 .card-product {
