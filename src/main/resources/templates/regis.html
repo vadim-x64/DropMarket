@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <title>Реєстрація</title>
     <link rel="icon" href="/static/images/icon.png" type="image/png">
@@ -12,37 +12,19 @@
 <body>
 <div class="container">
     <div class="card">
-        <a href="/"><h1 class="card-header">Реєстрація</h1></a><br>
+        <h1 class="card-header"><a href="/"><img src="/static/images/right.png" alt=""></a>Реєстрація</h1>
         <form action="/regis" method="post" th:object="${users}">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <label for="username"></label>
-                        <input type="text" id="username" name="username" th:value="${users.username}" class="form-control" placeholder="Логін">
-                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="password"></label>
-                        <div class="input-group">
-                            <input type="password" id="password" name="password" class="form-control" placeholder="Пароль">
-                        </div>
-                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
                         <label for="firstName"></label>
-                        <input type="text" id="firstName" name="firstName" th:value="${customer.firstName}" class="form-control" placeholder="Ім'я">
+                        <input type="text" id="firstName" name="firstName" th:value="${customer.firstName}" class="form-control" placeholder="Ім'я" maxlength="50">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="lastName"></label>
-                        <input type="text" id="lastName" name="lastName" th:value="${customer.lastName}" class="form-control" placeholder="Прізвище">
+                        <input type="text" id="lastName" name="lastName" th:value="${customer.lastName}" class="form-control" placeholder="Прізвище" maxlength="50">
                     </div>
                 </div>
             </div>
@@ -50,13 +32,18 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="phone"></label>
-                        <input type="num" id="phone" name="phone" th:value="${customer.phone}" class="form-control" placeholder="Телефон">
+                        <div class="input-group">
+                            <button type="button" class="btn btn-outline-warning">
+                                <img src="/static/images/ukraine.png" alt="">
+                            </button>
+                            <input type="text" id="phone" name="phone" th:value="${customer.phone}" class="form-control" placeholder="Телефон" maxlength="13" oninput="formatPhone(this);">
+                        </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="email"></label>
-                        <input type="email" id="email" name="email" th:value="${customer.email}" class="form-control" placeholder="Пошта">
+                        <input type="email" id="email" name="email" th:value="${customer.email}" class="form-control" placeholder="Пошта" maxlength="50">
                     </div>
                 </div>
             </div>
@@ -64,13 +51,43 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="age"></label>
-                        <input type="num" id="age" name="age" th:value="${customer.age}" class="form-control" placeholder="Вік">
+                        <input type="text" id="age" name="age" th:value="${customer.age}" class="form-control" placeholder="Вік" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="address"></label>
-                        <input type="text" id="address" name="address" th:value="${customer.address}" class="form-control" placeholder="Адреса">
+                        <input type="text" id="address" name="address" th:value="${customer.address}" class="form-control" placeholder="Адреса" maxlength="50">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="username"></label>
+                        <input type="text" id="username" name="username" th:value="${users.username}" class="form-control" placeholder="Логін" maxlength="50">
+                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></p>
+                        <p class="mes" th:text="${message}"></p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="password"></label>
+                        <div class="input-group">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" maxlength="50">
+                            <button type="button" id="generatePasswordButton" class="btn btn-outline-secondary">
+                                <img src="/static/images/key.png" alt="">
+                            </button>
+                        </div>
+                        <div id="strength-meter" class="mt-1">
+                            <div id="strength-bar"></div>
+                        </div>
+
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></p>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input class="form-check-input" type="checkbox" value="" id="showPasswordCheckbox">
+                        <label class="form-check-label" for="showPasswordCheckbox">Показати пароль</label>
                     </div>
                 </div>
             </div>
@@ -81,7 +98,6 @@
                 </div>
             </div>
         </form>
-        <p th:text="${message}"></p>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

@@ -11,9 +11,18 @@ body {
 }
 
 .card h1 {
-    font-size: 48px;
+    font-size: 36px;
     text-align: center;
     color: #000;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card img {
+    width: 30px;
 }
 
 .container {

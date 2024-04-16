@@ -11,7 +11,6 @@
     <meta name="username" th:content="${username}"/>
 </head>
 <body>
-
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
         <img class="logo-icon" src="/static/images/logo.gif" alt="">
@@ -29,15 +28,12 @@
         <div>
             <div th:if="${username}">
                 <div id="userInitial" class="user-initial">
-                    <a th:href="@{/profile}" th:text="${username}">
-                    </a>
+                    <a th:href="@{/profile}" th:text="${username}"></a>
                 </div>
             </div>
         </div>
     </header>
 </div>
-
-
 <div class="card-product">
     <div class="card-body">
         <h5 class="card-title text-center mb-4">Вітаємо!</h5>
@@ -52,11 +48,8 @@
         </p>
     </div>
 </div>
-
-
 <h1>ДОДАТИ ТОВАР</h1>
 <div class="container">
-
     <form class="mt-4" action="/products" method="post" enctype="multipart/form-data">
         <div class="mb-3 row">
             <label for="photoUrl" class="col-sm-2 col-form-label">URL фото</label>
@@ -103,44 +96,29 @@
         </div>
     </form>
 </div>
-
-<div class="footer">
-    <footer class="py-3">
-        <ul class="nav justify-content-center pb-3 mb-3">
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/instagram.png" alt="Instagram"> Instagram
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/facebook.png" alt="Facebook"> Facebook
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/telegram.png" alt="Telegram"> Telegram
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/youtube.png" alt="YouTube"> YouTube
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link px-2 text-body-secondary">
-                    <img src="/static/images/twitter.png" alt="Twitter"> Twitter
-                </a>
-            </li>
-        </ul>
-        <p class="text-center">© 2024 DropMarket, Inc.</p>
-    </footer>
+<footer class="d-flex flex-wrap justify-content-between align-items-center p-5 border-top">
+    <div class="col-md-4 d-flex flex-column align-items-start">
+        <span>Номер менеджера</span>
+        <a href="tel:+38 (067) 987 56 43" class="mb-2"> +38 (067) 987 56 43</a>
+        <span>Гаряча лінія</span>
+        <a href="tel:+38 (097) 123 45 67" class="mb-2">+38 (097) 123 45 67</a>
+    </div>
+    <div class="col-md-4 d-flex flex-column align-items-center">
+        <span>Зв'яжіться з нами</span>
+        <a href="mailto:example1@example.com" class="mb-2">manager.market@gmail.com</a>
+        <a href="mailto:example2@example.com" class="mb-2">ceo.market@gmail.com</a>
+    </div>
+    <div class="col-md-4 d-flex flex-column align-items-end">
+        <span>Адреса</span>
+        <a href="https://www.google.com/maps?q=вул. Київська 123, м. Київ" class="mb-2" target="_blank">вул. Київська 123, м. Київ</a>
+    </div>
+</footer>
+<div class="col-12 text-center">
+    <span>© 2024 DropMarket, Inc. Усі права захищено.</span>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="../static/js/products.js"></script>
-
 </body>
 </html>

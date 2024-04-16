@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let i = visibleCards; i < visibleCards + cardsToShow && i < cards.length; i++) {
             cards[i].classList.remove('d-none');
         }
+
         visibleCards += cardsToShow;
 
         if (visibleCards >= cards.length) {
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
     showCardsSequentially();
 
     if (cards.length <= cardsToShow) {
@@ -32,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    var products = document.querySelectorAll(".card");
-    var productsHeading = document.getElementById("productsHeading");
+    let products = document.querySelectorAll(".card");
+    let productsHeading = document.getElementById("productsHeading");
 
     if (products.length === 0) {
         productsHeading.style.display = "none";

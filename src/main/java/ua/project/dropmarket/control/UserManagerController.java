@@ -249,8 +249,8 @@ public class UserManagerController {
                              @RequestParam("firstName") String firstName,
                              @RequestParam("lastName") String lastName,
                              @RequestParam("email") String email,
-                             @RequestParam("phone") int phone,
-                             @RequestParam("age") int age,
+                             @RequestParam("phone") String phone,
+                             @RequestParam("age") String age,
                              @RequestParam("address") String address) {
           customerService.updateCustomer(customerId, firstName, lastName, email, phone, age, address);
         return "redirect:/profile";

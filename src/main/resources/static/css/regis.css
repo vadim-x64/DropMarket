@@ -1,17 +1,18 @@
-
 body {
     opacity: 0;
     animation: fadeIn 1s ease-in-out forwards;
     user-select: none;
+    font-family: Bahnschrift, serif;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+h1 {
+    font-size: 36px;
+    text-align: right;
+    color: #000;
+}
+
+.mes {
+    color: #FF2C2C;
 }
 
 .card {
@@ -25,6 +26,11 @@ body {
     border: 0;
 }
 
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
 form {
     padding: 20px;
 }
@@ -34,11 +40,18 @@ form {
     color: #000;
 }
 
+.card img {
+    width: 30px;
+}
+
+.form-group input {
+    font-size: 18px;
+    color: #000;
+}
+
 .peephole {
     cursor: pointer;
 }
-
-
 
 .btn-outline-success {
     width: 30%;
@@ -47,4 +60,68 @@ form {
 .but {
     display: flex;
     justify-content: end;
+}
+
+.btn-outline-secondary {
+    border: 1px solid #CCC;
+}
+
+.btn-outline-secondary:hover {
+    background: none;
+}
+
+.btn {
+    font-size: 18px;
+}
+
+.btn img {
+    width: 30px;
+}
+
+.form-check label {
+    color: #CCC;
+    font-size: 18px;
+}
+
+#strength-meter {
+    height: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+#strength-bar {
+    height: 100%;
+    width: 0;
+    background-color: #FF0000;
+    transition: width 0.3s ease;
+}
+
+#strength-bar.yellow {
+    background-color: #FFFF00;
+}
+
+#strength-bar.green {
+    background-color: #4eff0f;
+}
+
+.btn-outline-warning {
+    background-color: transparent !important;
+    border: 1px solid #CCC !important;
+}
+
+.btn-outline-warning:focus,
+.btn-outline-warning:hover {
+    background-color: transparent !important;
+    border: 1px solid #CCC !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

@@ -23,7 +23,7 @@ public class CustomerManagerService {
         return customerRepository.findByUserUsername(username);
     }
 
-    public void updateCustomer(Long customerId, String firstName, String lastName, String email, int phone, int age, String address) {
+    public void updateCustomer(Long customerId, String firstName, String lastName, String email, String phone, String age, String address) {
         Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
         if (optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();

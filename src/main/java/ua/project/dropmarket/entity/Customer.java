@@ -23,9 +23,9 @@ public class Customer {
 
     private String email;
 
-    private int phone;
+    private String phone;
 
-    private int age;
+    private String age;
 
     @NotEmpty
     private String address;
