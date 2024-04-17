@@ -57,15 +57,15 @@
                     <td th:text="${product.producer}"></td>
                 </tr>
                 <tr>
+                    <th scope="row">Ціна</th>
+                    <td th:text="${product.price} + ' ₴'"></td>
+                </tr>
+                <tr>
                     <th scope="row">В наявності?</th>
                     <td>
                         <span th:if="${product.available}" class="text-success">Так</span>
                         <span th:unless="${product.available}" class="text-danger">Ні</span>
                     </td>
-                </tr>
-                <tr>
-                    <th scope="row">Ціна</th>
-                    <td th:text="${product.price}"></td>
                 </tr>
                 </tbody>
             </table>

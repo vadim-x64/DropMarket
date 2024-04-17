@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         setTimeout(function() {
             window.location.href = "/";
-        }, 3000);
+        }, 0);
     });
 });
 
