@@ -84,7 +84,7 @@ header .col-12 {
     font-size: 18px;
 }
 
-.btn-outline-success {
+.btn-outline-success, .btn-outline-danger {
     width: 100%;
 }
 

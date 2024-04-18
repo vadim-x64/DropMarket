@@ -76,8 +76,12 @@
                 <button type="submit" class="btn btn-outline-success">Зберегти зміни</button>
             </div>
         </form>
+        <form th:action="@{/deleteAccount}" method="post">
+            <button type="submit" class="btn btn-outline-danger mt-1">Видалити акаунт</button>
+        </form>
     </div>
 </div>
+
 <h1 id="productsHeading">МОЇ ТОВАРИ</h1>
 <div class="row featurette m-1">
     <div th:each="product : ${products}" class="col-md-4 col-sm-6">
@@ -114,7 +118,7 @@
                         </p>
                     </div>
                     <p class="card-text">
-                        <input type="text" th:value="${product.price} + ' ₴'" name="price" placeholder="Ціна" required maxlength="50" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input type="text" th:value="${product.price}" name="price" placeholder="Ціна" required maxlength="50" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                     </p>
                     <div class="mb-3 row">
                         <div class="col-sm-10">

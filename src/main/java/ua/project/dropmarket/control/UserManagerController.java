@@ -279,4 +279,12 @@ public class UserManagerController {
         model.addAttribute("products", currentUserProducts);
         return "cooperation";
     }
+
+    @PostMapping("/deleteAccount")
+    public String deleteAccountAndLogout(Principal principal) {
+        String username = principal.getName();
+        userService.deleteUserByUsername(username); // Видалення користувача з бази даних
+        return "redirect:/logout"; // Вихід з системи
+    }
+
 }

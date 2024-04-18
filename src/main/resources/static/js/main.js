@@ -49,38 +49,56 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-document.getElementById('searchInput').addEventListener('input', function () {
-    const searchQuery = this.value.trim().toLowerCase();
-    const cards = document.querySelectorAll('.card');
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
     const showMoreButton = document.getElementById('showMoreButton');
     const notFoundMessage = document.getElementById('notFoundMessage');
-    let foundItems = false;
 
-    cards.forEach(function (card) {
-        const cardTitle = card.querySelector('.card-title').textContent.trim().toLowerCase();
+    // Функція для перевірки, чи є товари на сторінці
+    function checkProductsExistence() {
+        const cards = document.querySelectorAll('.card');
+        return cards.length > 0;
+    }
 
-        if (cardTitle.includes(searchQuery)) {
-            card.style.display = 'block';
-            foundItems = true;
-        } else {
-            card.style.display = 'none';
-            showMoreButton.style.display = 'none';
-        }
+    // Функція для перевірки та встановлення видимості поля пошуку
+    function setSearchInputVisibility() {
+        searchInput.style.display = checkProductsExistence() ? 'block' : 'none';
+    }
+
+    // Перевірка при завантаженні сторінки
+    setSearchInputVisibility();
+
+    // Перевірка при введенні тексту в поле пошуку
+    searchInput.addEventListener('input', function () {
+        const searchQuery = this.value.trim().toLowerCase();
+        const cards = document.querySelectorAll('.card');
+        let foundItems = false;
+
+        cards.forEach(function (card) {
+            const cardTitle = card.querySelector('.card-title').textContent.trim().toLowerCase();
+
+            if (cardTitle.includes(searchQuery)) {
+                card.style.display = 'block';
+                foundItems = true;
+            } else {
+                card.style.display = 'none';
+                showMoreButton.style.display = 'none';
+            }
+        });
+
+        notFoundMessage.style.display = foundItems ? 'none' : 'block';
     });
 
-    if (!foundItems) {
-        notFoundMessage.style.display = 'block';
-    } else {
-        notFoundMessage.style.display = 'none';
-    }
+    // Перевірка при натисканні Enter в полі пошуку
+    searchInput.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            const featuretteBlock = document.querySelector('.cat');
+            featuretteBlock.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
 });
 
-document.getElementById('searchInput').addEventListener('keypress', function (event) {
-    if (event.key === 'Enter') {
-        const featuretteBlock = document.querySelector('.cat');
-        featuretteBlock.scrollIntoView({behavior: 'smooth'});
-    }
-});
+
 
 let username = "";
 

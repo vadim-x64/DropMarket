@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ua.project.dropmarket.entity.Customer;
 import ua.project.dropmarket.entity.Role;
 import ua.project.dropmarket.entity.Users;
 import ua.project.dropmarket.repos.CustomerRepository;
@@ -53,4 +54,16 @@ public class UserManagerService implements UserDetailsService {
         }
         return user1;
     }
+
+    public void deleteUserByUsername(String username) {
+        Users user = userRepository.findByUsername(username);
+        if (user != null) {
+            Customer customer = customerRepository.findByUser(user);
+            if (customer != null) {
+                customerRepository.delete(customer);
+            }
+            userRepository.delete(user);
+        }
+    }
+
 }
