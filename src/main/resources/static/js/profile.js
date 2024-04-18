@@ -60,3 +60,10 @@ messageInput.addEventListener('input', function() {
     const currentLength = this.value.length;
     charCount.textContent = `${currentLength} / ${maxLength}`;
 });
+
+function confirmDelete(event) {
+    event.preventDefault(); // Prevent default form submission
+    if (confirm("Ви впевнені, що хочете видалити цей товар?")) {
+        event.target.closest('form').submit(); // Submit the form associated with the clicked delete button
+    }
+}

@@ -91,13 +91,15 @@
 
             <div class="block-del">
                 <div class="del-sec">
-                    <form th:action="@{'/delete/' + ${product.id}}" method="post">
-                        <button type="submit" class="btn-del">
+                    <form id="deleteForm"  th:action="@{'/delete/' + ${product.id}}" method="post">
+                        <button type="submit" class="btn-del" onclick="confirmDelete(event)">
                             <img src="/static/images/delete.png" alt="">
                         </button>
                     </form>
                 </div>
             </div>
+
+
 
             <form th:action="@{'/update/' + ${product.id}}" method="post">
                 <a th:href="@{'/details/' + ${product.id}}">
