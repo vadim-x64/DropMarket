@@ -88,13 +88,26 @@
         <div class="card mb-4 box-shadow">
             <div class="block-del">
                 <div class="del-sec">
-                    <form th:action="@{'/delete/' + ${product.id}}" method="post">
-                        <button type="submit" class="btn-del">
+                    <form id="deleteForm" th:action="@{'/delete/' + ${product.id}}" method="post">
+                        <button type="button" class="btn-del" onclick="showConfirmation()">
                             <img src="/static/images/delete.png" alt="">
                         </button>
                     </form>
                 </div>
             </div>
+
+            <div id="confirmationModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="hideConfirmation()">❌</span>
+                    <p>Ви впевнені, що хочете видалити цей товар?</p>
+                    <div class="buttons">
+                        <button class="btn btn-outline-success" onclick="deleteProduct()">Так, видалити</button>
+                        <button class="btn btn-outline-danger" onclick="hideConfirmation()">Скасувати</button>
+                    </div>
+                </div>
+            </div>
+
+
             <form th:action="@{'/update/' + ${product.id}}" method="post">
                 <a th:href="@{'/details/' + ${product.id}}">
                     <div class="image-container">

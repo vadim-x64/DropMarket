@@ -60,3 +60,17 @@ messageInput.addEventListener('input', function() {
     const currentLength = this.value.length;
     charCount.textContent = `${currentLength} / ${maxLength}`;
 });
+
+function showConfirmation() {
+    let modal = document.getElementById("confirmationModal");
+    modal.style.display = "block";
+}
+
+function hideConfirmation() {
+    let modal = document.getElementById("confirmationModal");
+    modal.style.display = "none";
+}
+
+function deleteProduct() {
+    document.getElementById("deleteForm").submit();
+}
