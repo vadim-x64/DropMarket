@@ -89,8 +89,8 @@
         <div class="card mb-4 box-shadow">
             <div class="block-del">
                 <div class="del-sec">
-                    <form id="deleteForm"  th:action="@{'/delete/' + ${product.id}}" method="post">
-                        <button type="submit" class="btn-del" onclick="confirmDelete(event)">
+                    <form id="deleteForm" th:action="@{'/delete/' + ${product.id}}" method="post">
+                        <button type="submit" class="btn-del" onclick="confirmDelete(event)" title="Видалити товар">
                             <img src="/static/images/delete.png" alt="">
                         </button>
                     </form>
