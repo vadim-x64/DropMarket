@@ -283,8 +283,19 @@ public class UserManagerController {
     @PostMapping("/deleteAccount")
     public String deleteAccountAndLogout(Principal principal) {
         String username = principal.getName();
-        userService.deleteUserByUsername(username); // Видалення користувача з бази даних
-        return "redirect:/logout"; // Вихід з системи
+        userService.deleteUserByUsername(username);
+        return "redirect:/logout";
     }
-
+//    @PostMapping("/deleteAll")
+//    public String deleteAllProducts(Principal principal) {
+//        String username = principal.getName();
+//        Users createdBy = userRepository.findByUsername(username);
+//        List<Product> products = productService.findByCreatedBy(createdBy);
+//
+//        for (Product product : products) {
+//            productService.delete(product.getId());
+//        }
+//
+//        return "redirect:/profile";
+//    }
 }

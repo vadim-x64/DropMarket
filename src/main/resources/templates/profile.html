@@ -87,8 +87,6 @@
 <div class="row featurette m-1">
     <div th:each="product : ${products}" class="col-md-4 col-sm-6">
         <div class="card mb-4 box-shadow">
-
-
             <div class="block-del">
                 <div class="del-sec">
                     <form id="deleteForm"  th:action="@{'/delete/' + ${product.id}}" method="post">
@@ -98,8 +96,6 @@
                     </form>
                 </div>
             </div>
-
-
 
             <form th:action="@{'/update/' + ${product.id}}" method="post">
                 <a th:href="@{'/details/' + ${product.id}}">
@@ -120,7 +116,7 @@
                         <input type="text" th:value="${product.producer}" name="producer" placeholder="Виробник"
                                required maxlength="50">
                     </p>
-                    <div id="charCount" class="d-flex justify-content-end">0 / 2000</div>
+
                     <div class="mb-3 row">
                         <p class="card-text">
                             <textarea type="text" th:value="${product.description}" id="description" name="description"
