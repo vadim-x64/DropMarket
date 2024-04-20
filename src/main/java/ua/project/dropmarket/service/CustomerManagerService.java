@@ -1,10 +1,18 @@
 package ua.project.dropmarket.service;
 
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import ua.project.dropmarket.entity.Customer;
 import ua.project.dropmarket.entity.Product;
 import ua.project.dropmarket.repos.CustomerRepository;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -35,5 +43,28 @@ public class CustomerManagerService {
             customer.setAddress(address);
             customerRepository.save(customer);
         }
+    }
+
+    public void saveAvatar(String username, MultipartFile file) {
+        Customer customer = customerRepository.findByUserUsername(username);
+        try {
+            BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+            BufferedImage thumbnail = Thumbnails.of(originalImage)
+                    .size(200, 200)
+                    .asBufferedImage();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(thumbnail, "jpg", baos);
+            byte[] bytes = baos.toByteArray();
+
+            customer.setAvatar(bytes);
+            customerRepository.save(customer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public String bytesToBase64String(byte[] bytes) {
+        return Base64.getEncoder().encodeToString(bytes);
     }
 }

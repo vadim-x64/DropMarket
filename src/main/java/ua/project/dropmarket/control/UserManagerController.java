@@ -150,17 +150,7 @@ public class UserManagerController {
         return "info";
     }
 
-    @GetMapping("/profile")
-    public String getProfilePage(Model model, Principal principal) {
-        String username = principal.getName();
-        Customer customer = customerService.getCustomerByUsername(username);
-        model.addAttribute("customer", customer);
 
-        List<Product> products = productService.findByCreatedBy(customer.getUser());
-        model.addAttribute("products", products);
-
-        return "profile";
-    }
 
     @GetMapping("/products")
     public String showAddProductForm(Product product, Principal principal, Model model) {
@@ -286,6 +276,31 @@ public class UserManagerController {
         userService.deleteUserByUsername(username);
         return "redirect:/logout";
     }
+
+    @PostMapping("/uploadAvatar")
+    public String uploadAvatar(@RequestParam("avatar") MultipartFile file, Principal principal) {
+        String username = principal.getName();
+        customerService.saveAvatar(username, file);
+        return "redirect:/profile";
+    }
+
+    @GetMapping("/profile")
+    public String getProfilePage(Model model, Principal principal) {
+        String username = principal.getName();
+        Customer customer = customerService.getCustomerByUsername(username);
+        model.addAttribute("customer", customer);
+
+        List<Product> products = productService.findByCreatedBy(customer.getUser());
+        model.addAttribute("products", products);
+
+        if (customer.getAvatar() != null) {
+            String base64Avatar = customerService.bytesToBase64String(customer.getAvatar());
+            model.addAttribute("avatar", base64Avatar);
+        }
+
+        return "profile";
+    }
+
 //    @PostMapping("/deleteAll")
 //    public String deleteAllProducts(Principal principal) {
 //        String username = principal.getName();

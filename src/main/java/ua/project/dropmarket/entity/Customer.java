@@ -15,6 +15,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Lob
+    @Column(name = "avatar", columnDefinition="BLOB")
+    private byte[] avatar;
+
     private String firstName;
 
     private String lastName;

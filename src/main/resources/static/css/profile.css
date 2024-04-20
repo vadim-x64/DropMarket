@@ -18,8 +18,10 @@ h1 {
     color: #62FF62;
 }
 
-#deleteForm button:hover {
-
+.avatar {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
 }
 
 .mb-3 textarea {

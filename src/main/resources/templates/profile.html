@@ -30,6 +30,18 @@
         <a class="log" href="/logout">Вийти</a>
     </header>
 </div>
+
+<form th:action="@{/uploadAvatar}" method="post" enctype="multipart/form-data">
+    <input type="file" name="avatar" accept="image/jpg, image/png">
+
+    <button type="submit">Завантажити фото профілю</button>
+</form>
+
+
+<img class="avatar" th:if="${avatar != null}" th:src="@{'data:image/jpg;base64,' + ${avatar}}" alt="Avatar">
+
+
+
 <div class="row featurette m-1">
     <h1>
         <span th:text="${customer.firstName}"></span>
@@ -77,8 +89,8 @@
                 <button type="submit" class="btn btn-outline-success">Зберегти зміни</button>
             </div>
         </form>
-        <form th:action="@{/deleteAccount}" method="post">
-            <button type="submit" class="btn btn-outline-danger mt-1">Видалити акаунт</button>
+        <form id="deleteAccountForm" th:action="@{/deleteAccount}" method="post">
+            <button type="button" class="btn btn-outline-danger mt-1" onclick="confirmDeleteAccount()">Видалити акаунт</button>
         </form>
     </div>
 </div>
