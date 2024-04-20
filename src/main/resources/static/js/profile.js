@@ -66,3 +66,16 @@ function confirmDeleteAccount() {
         event.target.closest('form').submit(); // Submit the form associated with the clicked delete button
     }
 }
+
+window.onload = function(){
+    document.querySelector('input[type="file"]').onchange = function(){
+        document.querySelector('form').submit();
+    };
+};
+
+function confirmDeleteAvatar() {
+    var result = confirm("Ви впевнені, що хочете видалити аватар?");
+    if (result) {
+        document.getElementById('deleteAvatarForm').submit();
+    }
+}

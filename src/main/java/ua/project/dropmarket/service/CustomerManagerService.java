@@ -63,8 +63,13 @@ public class CustomerManagerService {
         }
     }
 
-
     public String bytesToBase64String(byte[] bytes) {
         return Base64.getEncoder().encodeToString(bytes);
+    }
+
+    public void deleteAvatar(String username) {
+        Customer customer = customerRepository.findByUserUsername(username);
+        customer.setAvatar(null); // Встановлення аватара в null
+        customerRepository.save(customer);
     }
 }

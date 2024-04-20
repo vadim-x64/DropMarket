@@ -31,15 +31,26 @@
     </header>
 </div>
 
-<form th:action="@{/uploadAvatar}" method="post" enctype="multipart/form-data">
-    <input type="file" name="avatar" accept="image/jpg, image/png">
-
-    <button type="submit">Завантажити фото профілю</button>
+<form th:action="@{/uploadAvatar}" method="post" enctype="multipart/form-data" style="display: none;">
+    <input type="file" id="avatar" name="avatar" accept="image/jpg, image/png">
 </form>
 
+<img class="avatar" th:if="${avatar != null}"
+     th:src="@{'data:image/jpg;base64,' + ${avatar}}"
+     alt="Avatar" onclick="document.getElementById('avatar').click();">
 
-<img class="avatar" th:if="${avatar != null}" th:src="@{'data:image/jpg;base64,' + ${avatar}}" alt="Avatar">
+<img class="avatar" th:if="${avatar == null}"
+     src="/static/images/avatar.png"
+     alt="Default Avatar" onclick="document.getElementById('avatar').click();">
 
+
+<form th:action="@{/deleteAvatar}" method="post" id="deleteAvatarForm" style="display: none;">
+    <!-- Поле, що вказує на видалення аватара -->
+    <input type="hidden" name="deleteAvatar" value="true">
+</form>
+
+<!-- Кнопка для видалення аватара -->
+<button id="deleteAvatarButton" th:if="${avatar != null}" onclick="confirmDeleteAvatar()">Видалити аватар</button>
 
 
 <div class="row featurette m-1">
