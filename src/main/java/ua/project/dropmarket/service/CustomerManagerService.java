@@ -1,6 +1,7 @@
 package ua.project.dropmarket.service;
 
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ua.project.dropmarket.entity.Customer;
@@ -12,7 +13,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,6 +51,16 @@ public class CustomerManagerService {
     public void saveAvatar(String username, MultipartFile file) {
         Customer customer = customerRepository.findByUserUsername(username);
         try {
+            // Отримати розширення файлу
+            String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
+
+            // Перевірити, чи є розширення допустимим
+            List<String> allowedExtensions = Arrays.asList("ico", "bmp", "png", "jpg", "jpeg");
+            if (!allowedExtensions.contains(fileExtension.toLowerCase())) {
+                // Якщо розширення файлу не є допустимим, просто оновіть сторінку профілю
+                return;
+            }
+
             BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
             BufferedImage thumbnail = Thumbnails.of(originalImage)
                     .size(200, 200)

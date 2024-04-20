@@ -31,27 +31,20 @@
     </header>
 </div>
 
-<form th:action="@{/uploadAvatar}" method="post" enctype="multipart/form-data" style="display: none;">
-    <input type="file" id="avatar" name="avatar" accept="image/jpg, image/png">
+<form class="ava" th:action="@{/uploadAvatar}" method="post" enctype="multipart/form-data">
+    <input type="file" id="avatar" name="avatar" accept="image/jpg">
 </form>
 
-<img class="avatar" th:if="${avatar != null}"
-     th:src="@{'data:image/jpg;base64,' + ${avatar}}"
-     alt="Avatar" onclick="document.getElementById('avatar').click();">
-
-<img class="avatar" th:if="${avatar == null}"
-     src="/static/images/avatar.png"
-     alt="Default Avatar" onclick="document.getElementById('avatar').click();">
-
-
-<form th:action="@{/deleteAvatar}" method="post" id="deleteAvatarForm" style="display: none;">
-    <!-- Поле, що вказує на видалення аватара -->
+<form class="ava" th:action="@{/deleteAvatar}" method="post" id="deleteAvatarForm">
     <input type="hidden" name="deleteAvatar" value="true">
 </form>
 
-<!-- Кнопка для видалення аватара -->
-<button id="deleteAvatarButton" th:if="${avatar != null}" onclick="confirmDeleteAvatar()">Видалити аватар</button>
+<button id="deleteAvatarButton" th:if="${avatar != null}" onclick="confirmDeleteAvatar()">
+    <img class="remove-btn" src="/static/images/remove.png" alt="">
+</button>
 
+<img class="avatar" th:if="${avatar != null}" th:src="@{'data:image/jpg;base64,' + ${avatar}}" alt="" onclick="document.getElementById('avatar').click();">
+<img class="avatar" th:if="${avatar == null}" src="/static/images/avatar.png" alt="" onclick="document.getElementById('avatar').click();">
 
 <div class="row featurette m-1">
     <h1>
@@ -189,6 +182,8 @@
 <div class="col-12 text-center">
     <span>© 2024 DropMarket, Inc. Усі права захищено.</span>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

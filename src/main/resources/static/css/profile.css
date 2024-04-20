@@ -18,12 +18,35 @@ h1 {
     color: #62FF62;
 }
 
+.ava {
+    display: none;
+}
+
 .avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     cursor: pointer;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 1);
+}
+
+#deleteAvatarButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+#deleteAvatarButton img {
+    width: 15px;
 }
 
 .mb-3 textarea {
