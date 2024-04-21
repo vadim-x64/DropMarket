@@ -20,10 +20,9 @@ public class Product {
     private String description;
     private BigDecimal price;
     private boolean available;
-
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_id") // Assuming the column name in the database is "user_id"
+    @JoinColumn(name = "user_id")
     private Users createdBy;
 }

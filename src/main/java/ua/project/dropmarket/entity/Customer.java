@@ -1,10 +1,7 @@
 package ua.project.dropmarket.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -18,15 +15,10 @@ public class Customer {
     @Lob
     @Column(name = "avatar", columnDefinition="BLOB")
     private byte[] avatar;
-
     private String firstName;
-
     private String lastName;
-
     private String email;
-
     private String phone;
-
     private String age;
 
     @NotEmpty

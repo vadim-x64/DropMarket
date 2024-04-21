@@ -16,7 +16,6 @@ document.getElementById('generatePasswordButton').addEventListener('click', func
     document.querySelector('button[type="submit"]').disabled = false;
 });
 
-
 function generatePassword(length) {
     let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]<>?";
     let password = "";

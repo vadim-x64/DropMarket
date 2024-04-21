@@ -27,9 +27,7 @@
         </div>
         <div>
             <div th:if="${username}">
-                <div id="userInitial" class="user-initial">
-                    <a th:href="@{/profile}" th:text="${username}"></a>
-                </div>
+                <div id="userInitial" class="user-initial"><a th:href="@{/profile}" th:text="${username}"></a></div>
             </div>
         </div>
     </header>
@@ -106,17 +104,15 @@
     </div>
     <div class="col-md-4 d-flex flex-column align-items-center">
         <span>Зв'яжіться з нами</span>
-        <a href="mailto:example1@example.com" class="mb-2">manager.market@gmail.com</a>
-        <a href="mailto:example2@example.com" class="mb-2">ceo.market@gmail.com</a>
+        <a href="mailto:manager.market@gmail.com" class="mb-2">manager.market@gmail.com</a>
+        <a href="mailto:ceo.market@gmail.com" class="mb-2">ceo.market@gmail.com</a>
     </div>
     <div class="col-md-4 d-flex flex-column align-items-end">
         <span>Адреса</span>
         <a href="https://www.google.com/maps?q=вул. Київська 123, м. Київ" class="mb-2" target="_blank">вул. Київська 123, м. Київ</a>
     </div>
 </footer>
-<div class="col-12 text-center">
-    <span>© 2024 DropMarket, Inc. Усі права захищено.</span>
-</div>
+<div class="col-12 text-center"><span>© 2024 DropMarket, Inc. Усі права захищено.</span></div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

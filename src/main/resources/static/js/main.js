@@ -54,21 +54,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const showMoreButton = document.getElementById('showMoreButton');
     const notFoundMessage = document.getElementById('notFoundMessage');
 
-    // Функція для перевірки, чи є товари на сторінці
     function checkProductsExistence() {
         const cards = document.querySelectorAll('.card');
         return cards.length > 0;
     }
 
-    // Функція для перевірки та встановлення видимості поля пошуку
     function setSearchInputVisibility() {
         searchInput.style.display = checkProductsExistence() ? 'block' : 'none';
     }
 
-    // Перевірка при завантаженні сторінки
     setSearchInputVisibility();
 
-    // Перевірка при введенні тексту в поле пошуку
     searchInput.addEventListener('input', function () {
         const searchQuery = this.value.trim().toLowerCase();
         const cards = document.querySelectorAll('.card');
@@ -97,8 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-
 
 let username = "";
 

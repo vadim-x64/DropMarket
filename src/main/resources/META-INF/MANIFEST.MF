@@ -1,3 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: ua.project.dropmarket.DropMarketApplication
-
+Main-Class: ua.project.dropmarket.DropMarket

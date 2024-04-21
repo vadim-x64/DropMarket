@@ -3,8 +3,7 @@ package ua.project.dropmarket.service;
 import org.springframework.stereotype.Service;
 import ua.project.dropmarket.entity.Product;
 import ua.project.dropmarket.entity.Users;
-import ua.project.dropmarket.repos.ProductRepository;
-
+import ua.project.dropmarket.repository.ProductRepository;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,11 +16,6 @@ public class ProductService {
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
-    }
-
-
-    public Product save(Product product) {
-        return productRepository.save(product);
     }
 
     public List<Product> findAll() {
@@ -40,9 +34,9 @@ public class ProductService {
         return productRepository.findByCreatedBy(user);
     }
 
-    public Product saveDate(Product product) {
-        product.setCreatedAt(LocalDateTime.now()); // Встановіть поточну дату і час перед збереженням
-        return productRepository.save(product);
+    public void saveDate(Product product) {
+        product.setCreatedAt(LocalDateTime.now());
+        productRepository.save(product);
     }
 
     public void updateProduct(Long productId, String name, String description, String producer, BigDecimal price, boolean available, String photoUrl) {
@@ -54,7 +48,7 @@ public class ProductService {
             product.setProducer(producer);
             product.setPrice(price);
             product.setAvailable(available);
-            product.setPhoto(photoUrl); // Set new photo URL
+            product.setPhoto(photoUrl);
             productRepository.save(product);
         }
     }

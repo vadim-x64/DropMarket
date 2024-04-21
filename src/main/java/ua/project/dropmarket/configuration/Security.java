@@ -1,4 +1,4 @@
-package ua.project.dropmarket.config;
+package ua.project.dropmarket.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,17 +10,17 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import ua.project.dropmarket.service.UserManagerService;
+import ua.project.dropmarket.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig
-{
-    private final UserManagerService userManagerService;
+public class Security {
+
+    private final UserService userService;
 
     @Autowired
-    public WebSecurityConfig(UserManagerService userManagerService) {
-        this.userManagerService = userManagerService;
+    public Security(UserService userService) {
+        this.userService = userService;
     }
 
     @Bean
@@ -29,18 +29,17 @@ public class WebSecurityConfig
     }
 
     @Bean
-    public SecurityFilterChain spiFilterChain(HttpSecurity http) throws Exception // налаштовує HttpSecurity
-    {
-        http
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
-                .authenticationManager(http.getSharedObject(AuthenticationManagerBuilder.class)
-                        .userDetailsService(userManagerService)
+                .authenticationManager(httpSecurity.getSharedObject(AuthenticationManagerBuilder.class)
+                        .userDetailsService(userService)
                         .passwordEncoder(passwordEncoder())
                         .and()
                         .build());
-        http
+        httpSecurity
                 .csrf()
                 .disable()
                 .authorizeHttpRequests((authorize) -> authorize
@@ -63,6 +62,6 @@ public class WebSecurityConfig
                 .logout((logout) -> logout
                         .permitAll()
                         .logoutSuccessUrl("/"));
-        return http.build();
+        return httpSecurity.build();
     }
 }

@@ -1,4 +1,4 @@
-package ua.project.dropmarket.control;
+package ua.project.dropmarket.controller;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -9,55 +9,45 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import ua.project.dropmarket.entity.Customer;
 import ua.project.dropmarket.entity.Product;
 import ua.project.dropmarket.entity.Users;
-import ua.project.dropmarket.repos.ProductRepository;
-import ua.project.dropmarket.repos.UserRepository;
-import ua.project.dropmarket.service.CustomerManagerService;
+import ua.project.dropmarket.repository.ProductRepository;
+import ua.project.dropmarket.repository.UserRepository;
+import ua.project.dropmarket.service.CustomerService;
 import ua.project.dropmarket.service.ProductService;
-import ua.project.dropmarket.service.UserManagerService;
-import java.io.IOException;
+import ua.project.dropmarket.service.UserService;
 import java.math.BigDecimal;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Controller
-public class UserManagerController {
+public class Management {
 
-    private final CustomerManagerService customerService;
+    private final CustomerService customerService;
     private final UserRepository userRepository;
-    private final UserManagerService userService;
-    private final ProductService productService;
+    private final UserService userService;
     private final ProductRepository productRepository;
+    private final ProductService productService;
 
     @Autowired
-    public UserManagerController(ProductRepository productRepository, CustomerManagerService customerService, UserManagerService userService, UserRepository userRepository, ProductService productService) {
+    public Management(CustomerService customerService, UserRepository userRepository, UserService userService, ProductRepository productRepository, ProductService productService) {
         this.customerService = customerService;
-        this.userService = userService;
         this.userRepository = userRepository;
-        this.productService = productService;
+        this.userService = userService;
         this.productRepository = productRepository;
+        this.productService = productService;
     }
 
     @GetMapping("/")
     public String getHomePage(Model model, Principal principal) {
         List<Product> currentUserProducts = new ArrayList<>();
-        List<Product> otherUsersProducts = new ArrayList<>();
-
+        List<Product> otherUserProducts = new ArrayList<>();
         if (principal != null) {
             String username = principal.getName();
             Users currentUser = userRepository.findByUsername(username);
@@ -68,11 +58,11 @@ public class UserManagerController {
         List<Product> allProducts = productService.findAll();
         for (Product product : allProducts) {
             if (!currentUserProducts.contains(product)) {
-                otherUsersProducts.add(product);
+                otherUserProducts.add(product);
             }
         }
 
-        currentUserProducts.addAll(otherUsersProducts);
+        currentUserProducts.addAll(otherUserProducts);
         model.addAttribute("products", currentUserProducts);
         return "main";
     }
@@ -83,7 +73,6 @@ public class UserManagerController {
         if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
             return "redirect:/";
         }
-
         return "login";
     }
 
@@ -106,19 +95,18 @@ public class UserManagerController {
     }
 
     @PostMapping("/regis")
-    public String saveNewCustomer(@Valid Users users, BindingResult bindingResult, @Valid Customer customer, BindingResult bindingResult1, Model model) {
-
+    public String addCustomer(@Valid Users users, BindingResult bindingResult, @Valid Customer customer, BindingResult bindingResult1, Model model) {
         if (bindingResult.hasErrors() || bindingResult1.hasErrors()) {
-            return "/regis";
+            return "regis";
         }
 
         if (userService.getLogicByUser(users.getUsername())) {
             model.addAttribute("message", "Користувач з таким іменем вже існує!");
-            return "/regis";
+            return "regis";
         }
 
-        Users user1 = userService.saveNewUserToDB(users);
-        customer.setUser(user1);
+        Users user = userService.saveNewUserToDB(users);
+        customer.setUser(user);
         customerService.saveCustomerToDB(customer);
         return "redirect:/";
     }
@@ -126,8 +114,7 @@ public class UserManagerController {
     @GetMapping("/info")
     public String getInfoPage(Model model, Principal principal) {
         List<Product> currentUserProducts = new ArrayList<>();
-        List<Product> otherUsersProducts = new ArrayList<>();
-
+        List<Product> otherUserProducts = new ArrayList<>();
         if (principal != null) {
             String username = principal.getName();
             Users currentUser = userRepository.findByUsername(username);
@@ -138,22 +125,18 @@ public class UserManagerController {
         List<Product> allProducts = productService.findAll();
         for (Product product : allProducts) {
             if (!currentUserProducts.contains(product)) {
-                otherUsersProducts.add(product);
+                otherUserProducts.add(product);
             }
         }
 
-        currentUserProducts.addAll(otherUsersProducts);
+        currentUserProducts.addAll(otherUserProducts);
         model.addAttribute("products", currentUserProducts);
         return "info";
     }
 
-
-
     @GetMapping("/products")
-    public String showAddProductForm(Product product, Principal principal, Model model) {
+    public String getProductPage(Principal principal, Model model) {
         List<Product> currentUserProducts = new ArrayList<>();
-
-
         if (principal != null) {
             String username = principal.getName();
             Users currentUser = userRepository.findByUsername(username);
@@ -161,24 +144,17 @@ public class UserManagerController {
             model.addAttribute("username", username);
         }
 
-
-
         model.addAttribute("products", currentUserProducts);
-
         return "products";
     }
 
     @PostMapping("/products")
     public String addProduct(@Valid Product product, @RequestParam("photoUrl") String photoUrl, Principal principal) {
         product.setPhoto(photoUrl);
-
         String username = principal.getName();
         Users createdBy = userRepository.findByUsername(username);
         product.setCreatedBy(createdBy);
-
         productService.saveDate(product);
-
-
         return "redirect:/products";
     }
 
@@ -189,10 +165,9 @@ public class UserManagerController {
     }
 
     @GetMapping("/details/{productId}")
-    public String getProductDetails(@PathVariable("productId") Long productId, Model model, Principal principal) {
+    public String getDetailsPage(@PathVariable("productId") Long productId, Model model, Principal principal) {
         List<Product> currentUserProducts = new ArrayList<>();
-        List<Product> otherUsersProducts = new ArrayList<>();
-
+        List<Product> otherUserProducts = new ArrayList<>();
         if (principal != null) {
             String username = principal.getName();
             Users currentUser = userRepository.findByUsername(username);
@@ -203,17 +178,18 @@ public class UserManagerController {
         List<Product> allProducts = productService.findAll();
         for (Product product : allProducts) {
             if (!currentUserProducts.contains(product)) {
-                otherUsersProducts.add(product);
+                otherUserProducts.add(product);
             }
         }
 
-        currentUserProducts.addAll(otherUsersProducts);
+        currentUserProducts.addAll(otherUserProducts);
         model.addAttribute("products", currentUserProducts);
 
         Product product = productService.findById(productId);
         if (product == null) {
             return "redirect:/";
         }
+
         model.addAttribute("product", product);
         return "details";
     }
@@ -230,24 +206,22 @@ public class UserManagerController {
         return "redirect:/profile";
     }
 
-
     @PostMapping("/updateCustomer/{customerId}")
     public String updateCustomer(@PathVariable("customerId") Long customerId,
-                             @RequestParam("firstName") String firstName,
-                             @RequestParam("lastName") String lastName,
-                             @RequestParam("email") String email,
-                             @RequestParam("phone") String phone,
-                             @RequestParam("age") String age,
-                             @RequestParam("address") String address) {
-          customerService.updateCustomer(customerId, firstName, lastName, email, phone, age, address);
+                                 @RequestParam("firstName") String firstName,
+                                 @RequestParam("lastName") String lastName,
+                                 @RequestParam("email") String email,
+                                 @RequestParam("phone") String phone,
+                                 @RequestParam("age") String age,
+                                 @RequestParam("address") String address) {
+        customerService.updateCustomer(customerId, firstName, lastName, email, phone, age, address);
         return "redirect:/profile";
     }
 
     @GetMapping("/cooperation")
     public String getCooperation(Model model, Principal principal) {
         List<Product> currentUserProducts = new ArrayList<>();
-        List<Product> otherUsersProducts = new ArrayList<>();
-
+        List<Product> otherUserProducts = new ArrayList<>();
         if (principal != null) {
             String username = principal.getName();
             Users currentUser = userRepository.findByUsername(username);
@@ -258,17 +232,17 @@ public class UserManagerController {
         List<Product> allProducts = productService.findAll();
         for (Product product : allProducts) {
             if (!currentUserProducts.contains(product)) {
-                otherUsersProducts.add(product);
+                otherUserProducts.add(product);
             }
         }
 
-        currentUserProducts.addAll(otherUsersProducts);
+        currentUserProducts.addAll(otherUserProducts);
         model.addAttribute("products", currentUserProducts);
         return "cooperation";
     }
 
     @PostMapping("/deleteAccount")
-    public String deleteAccountAndLogout(Principal principal) {
+    public String deleteAccount(Principal principal) {
         String username = principal.getName();
         userService.deleteUserByUsername(username);
         return "redirect:/logout";
@@ -289,12 +263,10 @@ public class UserManagerController {
 
         List<Product> products = productService.findByCreatedBy(customer.getUser());
         model.addAttribute("products", products);
-
         if (customer.getAvatar() != null) {
             String base64Avatar = customerService.bytesToBase64String(customer.getAvatar());
             model.addAttribute("avatar", base64Avatar);
         }
-
         return "profile";
     }
 

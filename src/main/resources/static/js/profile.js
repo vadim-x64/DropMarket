@@ -52,18 +52,17 @@ document.getElementById('lastName').addEventListener('input', function(event) {
     this.value = this.value.replace(/[^a-zA-Zа-яА-ЯґҐєЄіІїЇёЁ'\s]/g, '');
 });
 
-
 function confirmDelete(event) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
     if (confirm("Ви впевнені, що хочете видалити цей товар?")) {
-        event.target.closest('form').submit(); // Submit the form associated with the clicked delete button
+        event.target.closest('form').submit();
     }
 }
 
 function confirmDeleteAccount() {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
     if (confirm("Ви впевнені, що хочете видалити акаунт? Цю дію неможливо скасувати!")) {
-        event.target.closest('form').submit(); // Submit the form associated with the clicked delete button
+        event.target.closest('form').submit();
     }
 }
 
@@ -74,7 +73,7 @@ window.onload = function(){
 };
 
 function confirmDeleteAvatar() {
-    var result = confirm("Ви впевнені, що хочете видалити аватар?");
+    let result = confirm("Ви впевнені, що хочете видалити аватар?");
     if (result) {
         document.getElementById('deleteAvatarForm').submit();
     }

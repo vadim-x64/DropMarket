@@ -5,9 +5,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ua.project.dropmarket.entity.Customer;
-import ua.project.dropmarket.entity.Product;
-import ua.project.dropmarket.repos.CustomerRepository;
-
+import ua.project.dropmarket.repository.CustomerRepository;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -19,10 +17,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CustomerManagerService {
+public class CustomerService {
+
     private final CustomerRepository customerRepository;
 
-    public CustomerManagerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
@@ -51,24 +50,17 @@ public class CustomerManagerService {
     public void saveAvatar(String username, MultipartFile file) {
         Customer customer = customerRepository.findByUserUsername(username);
         try {
-            // Отримати розширення файлу
             String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename());
-
-            // Перевірити, чи є розширення допустимим
             List<String> allowedExtensions = Arrays.asList("ico", "bmp", "png", "jpg", "jpeg");
             if (!allowedExtensions.contains(fileExtension.toLowerCase())) {
-                // Якщо розширення файлу не є допустимим, просто оновіть сторінку профілю
                 return;
             }
 
             BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-            BufferedImage thumbnail = Thumbnails.of(originalImage)
-                    .size(200, 200)
-                    .asBufferedImage();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(thumbnail, "jpg", baos);
-            byte[] bytes = baos.toByteArray();
-
+            BufferedImage thumbnail = Thumbnails.of(originalImage).size(200, 200).asBufferedImage();
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            ImageIO.write(thumbnail, "jpg", out);
+            byte[] bytes = out.toByteArray();
             customer.setAvatar(bytes);
             customerRepository.save(customer);
         } catch (IOException e) {
@@ -82,7 +74,7 @@ public class CustomerManagerService {
 
     public void deleteAvatar(String username) {
         Customer customer = customerRepository.findByUserUsername(username);
-        customer.setAvatar(null); // Встановлення аватара в null
+        customer.setAvatar(null);
         customerRepository.save(customer);
     }
 }

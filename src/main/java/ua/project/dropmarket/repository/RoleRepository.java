@@ -1,4 +1,4 @@
-package ua.project.dropmarket.repos;
+package ua.project.dropmarket.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ua.project.dropmarket.entity.Role;
